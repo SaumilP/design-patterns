@@ -1,9 +1,9 @@
 package design.patterns.factories;
 
-import design.patterns.implementations.OrcCastle;
-import design.patterns.interfaces.Army;
-import design.patterns.interfaces.Castle;
-import design.patterns.interfaces.King;
+import design.patterns.adapter.implementations.OrcCastle;
+import design.patterns.adapter.interfaces.Army;
+import design.patterns.adapter.interfaces.Castle;
+import design.patterns.adapter.interfaces.King;
 
 /**
  * Created by PATEL1 on 12/27/14.

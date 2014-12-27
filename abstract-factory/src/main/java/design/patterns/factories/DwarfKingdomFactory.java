@@ -1,11 +1,11 @@
 package design.patterns.factories;
 
-import design.patterns.implementations.DwarfArmy;
-import design.patterns.implementations.DwarfCastle;
-import design.patterns.implementations.DwarfKing;
-import design.patterns.interfaces.Army;
-import design.patterns.interfaces.Castle;
-import design.patterns.interfaces.King;
+import design.patterns.adapter.implementations.DwarfArmy;
+import design.patterns.adapter.implementations.DwarfCastle;
+import design.patterns.adapter.implementations.DwarfKing;
+import design.patterns.adapter.interfaces.Army;
+import design.patterns.adapter.interfaces.Castle;
+import design.patterns.adapter.interfaces.King;
 
 /**
  * Created by PATEL1 on 12/27/14.
