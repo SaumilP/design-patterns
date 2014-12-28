@@ -11,9 +11,19 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>abstract-factory.pattern</artifactId>
+    <artifactId>visitor.pattern</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+    <developers>
+        <developer>
+            <id>Saumil Patel</id>
+            <roles><role>Developer</role></roles>
+            <timezone>GMT+2</timezone>
+            <url>https://github.com/saumilp</url>
+            <email>saumilpatel1@gmail.com</email>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
@@ -24,11 +34,14 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
-    
+
+
 </project>

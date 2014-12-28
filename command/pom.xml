@@ -7,13 +7,24 @@
     <parent>
         <groupId>design-patterns</groupId>
         <artifactId>java.design.pattern</artifactId>
-        <relativePath>../pom.xml</relativePath>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>abstract-factory.pattern</artifactId>
+    <groupId>design-patterns</groupId>
+    <artifactId>command.pattern</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+    <developers>
+        <developer>
+            <id>Saumil Patel</id>
+            <roles><role>Developer</role></roles>
+            <timezone>GMT+2</timezone>
+            <url>https://github.com/saumilp</url>
+            <email>saumilpatel1@gmail.com</email>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
@@ -30,5 +41,5 @@
             <artifactId>slf4j-jdk14</artifactId>
         </dependency>
     </dependencies>
-    
+
 </project>
