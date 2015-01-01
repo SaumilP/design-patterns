@@ -1,0 +1,15 @@
+language: java
+jdk:
+	- oraclejdk7
+	- openjdk7
+	- openjdk6
+script:
+	- mvn install -f abstract-factory/pom.xml
+	- mvn install -f adapter/pom.xml
+	- mvn install -f bridge/pom.xml
+	- mvn install -f builder/pom.xml
+	- mvn install -f command/pom.xml
+	- mvn install -f mediator/pom.xml
+	- mvn install -f singleton/pom.xml
+	- mvn install -f strategy/pom.xml
+	- mvn install -f visitor/pom.xml
