@@ -1,31 +1,31 @@
 language: java
 jdk:
-	- oraclejdk7
-	- openjdk7
-	- openjdk6
+  - oraclejdk7
+  - openjdk7
+  - openjdk6
 script:
-	- mvn install -f abstract-factory/pom.xml
-	- mvn install -f builder/pom.xml
-	- mvn install -f factory-method/pom.xml
-	- mvn install -f adapter/pom.xml
-	- mvn install -f bridge/pom.xml
-	- mvn install -f command/pom.xml
-	- mvn install -f mediator/pom.xml
-	- mvn install -f singleton/pom.xml
-	- mvn install -f strategy/pom.xml
-	- mvn install -f visitor/pom.xml
-	- mvn install -f servant/pom.xml
-	- mvn install -f service-locator/pom.xml
-	- mvn install -f template-method/pom.xml
-	- mvn install -f state/pom.xml
-	- mvn install -f observer/pom.xml
-	- mvn install -f momento/pom.xml
-	- mvn install -f iterator/pom.xml
-	- mvn install -f interpreter/pom.xml
-	- mvn install -f chain/pom.xml
-	- mvn install -f proxy/pom.xml
-	- mvn install -f flyweight/pom.xml
-	- mvn install -f facade/pom.xml
-	- mvn install -f decorator/pom.xml
-	- mvn install -f composite/pom.xml
-	- mvn install -f prototype/pom.xml
+  - mvn install -f abstract-factory/pom.xml
+  - mvn install -f builder/pom.xml
+  - mvn install -f factory-method/pom.xml
+  - mvn install -f adapter/pom.xml
+  - mvn install -f bridge/pom.xml
+  - mvn install -f command/pom.xml
+  - mvn install -f mediator/pom.xml
+  - mvn install -f singleton/pom.xml
+  - mvn install -f strategy/pom.xml
+  - mvn install -f visitor/pom.xml
+  - mvn install -f servant/pom.xml
+  - mvn install -f service-locator/pom.xml
+  - mvn install -f template-method/pom.xml
+  - mvn install -f state/pom.xml
+  - mvn install -f observer/pom.xml
+  - mvn install -f momento/pom.xml
+  - mvn install -f iterator/pom.xml
+  - mvn install -f interpreter/pom.xml
+  - mvn install -f chain/pom.xml
+  - mvn install -f proxy/pom.xml
+  - mvn install -f flyweight/pom.xml
+  - mvn install -f facade/pom.xml
+  - mvn install -f decorator/pom.xml
+  - mvn install -f composite/pom.xml
+  - mvn install -f prototype/pom.xml
