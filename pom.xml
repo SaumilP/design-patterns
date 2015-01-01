@@ -43,7 +43,7 @@
         <module>mediator</module>
         <module>visitor</module>
         <module>strategy</module>
-        <!--<module>factory-method</module>
+        <module>factory-method</module>
         <module>prototype</module>
         <module>composite</module>
         <module>decorator</module>
@@ -53,14 +53,14 @@
         <module>chain</module>
         <module>interpreter</module>
         <module>iterator</module>
-        <module>memento</module>
         <module>model-view-presenter</module>
         <module>observer</module>
         <module>state</module>
         <module>template-method</module>
 		<module>double-checked-locking</module>
 		<module>servant</module>
-		<module>service-locator</module>-->
+		<module>service-locator</module>
+        <module>momento</module>
     </modules>
 
     <developers>
