@@ -3,6 +3,9 @@ jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
+branches:
+  only:
+    - master
 script:
   - mvn install -f abstract-factory/pom.xml
   - mvn install -f builder/pom.xml
