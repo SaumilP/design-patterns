@@ -11,7 +11,6 @@
     <inceptionYear>2014</inceptionYear>
     <packaging>pom</packaging>
 
-<!--
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
@@ -19,7 +18,6 @@
 			<distribution>manual</distribution>
 		</license>
 	</licenses>
--->
 
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,7 +27,7 @@
 		<slf4j.api.version>1.7.5</slf4j.api.version>
 		<slf4j.jdk14.version>1.5.6</slf4j.jdk14.version>
 		<apache.maven.dependency-plugin.version>2.8</apache.maven.dependency-plugin.version>
-        <apache.maven-surefire-report-plugin.version>2.17</apache.maven-surefire-report-plugin.version>
+        <apache.maven-surefire-report-plugin.version>2.9</apache.maven-surefire-report-plugin.version>
 		<findbugs.maven.version>2.5.2</findbugs.maven.version>
 		<findbugs.includefilter.xml />
 		<findbugs.excludefilter.xml />
@@ -126,24 +124,31 @@
 					</includes>
 				</configuration>
 			</plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>${apache.maven-surefire-report-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>report-only</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>-->
+                <configuration>
+                    <outputDirectory>${project.build.directory}/site</outputDirectory>
+                    <reportsDirectories>
+                        <reportsDirectories>${project.build.directory}/site/surefire-reports</reportsDirectories>
+                    </reportsDirectories>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report-only</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>${findbugs.maven.version}</version>
                 <configuration>
-                    <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
                     <includeFilterFile>${findbugs.includefilter.xml}</includeFilterFile>
                     <excludeFilterFile>${findbugs.excludefilter.xml}</excludeFilterFile>
@@ -190,10 +195,10 @@
 		</repository>
 	</repositories>
 
-	<!--<pluginRepositories>
+	<pluginRepositories>
 		<pluginRepository>
 			<releases>
-				<enabled>true</enabled>
+				<enabled>false</enabled>
 			</releases>
 			<snapshots />
 			<id>apache.snapshots</id>
@@ -208,6 +213,6 @@
 			<name>Codehaus Maven Repository</name>
 			<url>http://repository.codehaus.org/</url>
 		</pluginRepository>
-	</pluginRepositories>-->
+	</pluginRepositories>
 
 </project>
