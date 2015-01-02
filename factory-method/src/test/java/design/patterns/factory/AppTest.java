@@ -1,15 +1,14 @@
-package design.pattern.facade;
+package design.patterns.factory;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 
 /**
  * Basic Test for {@link App}
  */
-public class AppTest{
+public class AppTest {
     @Test
     public void test(){
-        String[] args= {};
+        String[] args = {};
         App.main(args);
     }
 }

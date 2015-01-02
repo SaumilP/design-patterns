@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public class App {
     private static final Logger log = LoggerFactory.getLogger(App.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         PizzaCallCenterFacade callCenter = new PizzaCallCenterFacade();
 
         String deliveryAddress = "10 Main Street, Sandton, Johannesburg - 2196";
@@ -17,7 +17,12 @@ public class App {
         int expectedDeliveryTime = 20;
 
         log.debug("Calling call center....");
-        double amount = callCenter.getTotalOrderAmount(deliveryAddress, requestedPizzas, expectedDeliveryTime);
+        double amount = 0;
+        try {
+            amount = callCenter.getTotalOrderAmount(deliveryAddress, requestedPizzas, expectedDeliveryTime);
+        } catch (Exception ex) {
+            log.error("Failed to calculate Total Order Amount - ", ex);
+        }
         log.debug("Address:{}\nTotal Amount of Pizza:{}\nDelivery Time:{}\nPay Amount:{}\n",
                   deliveryAddress,
                   requestedPizzas,

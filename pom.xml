@@ -25,7 +25,7 @@
 		<hamcrest.version>1.3</hamcrest.version>
 		<apache.commons.collections>3.2.1</apache.commons.collections>
 		<slf4j.api.version>1.7.5</slf4j.api.version>
-		<slf4j.jdk14.version>1.5.6</slf4j.jdk14.version>
+		<slf4j.jdk14.version>1.7.5</slf4j.jdk14.version>
 		<apache.maven.dependency-plugin.version>2.8</apache.maven.dependency-plugin.version>
         <apache.maven-surefire-report-plugin.version>2.9</apache.maven-surefire-report-plugin.version>
 		<findbugs.maven.version>2.5.2</findbugs.maven.version>

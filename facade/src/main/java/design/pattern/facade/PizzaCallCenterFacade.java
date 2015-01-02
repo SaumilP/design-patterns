@@ -4,9 +4,9 @@ package design.pattern.facade;
  * Facade class provides unified interface to set of different other functions
  */
 public class PizzaCallCenterFacade {
-    private Delivery delivery;
-    private Discount discount;
-    private Order order;
+    private Delivery delivery = new Delivery();
+    private Discount discount = new Discount();
+    private Order order = new Order();
 
     private static final double DELIVERY_MARGIN = 0.1;
     private static final int DELIVERY_PER_MIN_RATE = 5;
