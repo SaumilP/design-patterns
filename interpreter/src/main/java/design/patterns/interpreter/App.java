@@ -30,5 +30,6 @@ public class App {
         String context = "Mary Owen";
         Expression define = prepareExpressionTree();
         Log.debug(context + " is " + define.interpret(context));
+        System.out.println(context + " is " + define.interpret(context));
     }
 }
