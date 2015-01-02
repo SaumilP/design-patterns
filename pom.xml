@@ -60,7 +60,7 @@
 		<module>double-checked-locking</module>
 		<module>servant</module>
 		<module>service-locator</module>
-        <module>momento</module>
+        <module>memento</module>
     </modules>
 
     <developers>

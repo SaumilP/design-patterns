@@ -1,4 +1,4 @@
-package design.patterns.momento;
+package design.patterns.memento;
 
 /**
  * Created by PATEL1 on 1/1/15.

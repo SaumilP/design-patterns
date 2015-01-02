@@ -1,4 +1,4 @@
-package design.patterns.momento;
+package design.patterns.memento;
 
 import org.junit.Test;
 
