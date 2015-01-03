@@ -61,6 +61,7 @@
 		<module>servant</module>
 		<module>service-locator</module>
         <module>memento</module>
+        <module>nullobject</module>
     </modules>
 
     <developers>
