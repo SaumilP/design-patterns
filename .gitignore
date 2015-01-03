@@ -9,4 +9,5 @@ target
 *.war
 *.ear
 *.iml
+*.uml
 .idea
