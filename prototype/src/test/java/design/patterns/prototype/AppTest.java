@@ -1,4 +1,4 @@
-package design.patterns.doubleCheckedLocking;
+package design.patterns.prototype;
 
 import org.junit.Test;
 

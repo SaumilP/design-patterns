@@ -20,4 +20,4 @@ addons:
     build_command:   "mvn -DskipTests=true compile"
     branch_pattern: coverity_scan
 script:
-  mvn clean compile
+  mvn compile test

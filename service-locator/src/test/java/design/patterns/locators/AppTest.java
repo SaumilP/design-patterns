@@ -1,4 +1,4 @@
-package design.patterns.doubleCheckedLocking;
+package design.patterns.locators;
 
 import org.junit.Test;
 
@@ -12,4 +12,3 @@ public class AppTest {
         App.main(args);
     }
 }
-

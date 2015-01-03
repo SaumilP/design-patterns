@@ -1,5 +1,6 @@
-package design.patterns.doubleCheckedLocking;
+package design.pattern.servant;
 
+import design.patterns.servant.App;
 import org.junit.Test;
 
 /**
@@ -12,4 +13,3 @@ public class AppTest {
         App.main(args);
     }
 }
-

@@ -28,7 +28,7 @@ public class Thief implements Hobbit {
     }
 
     @Override public void findsAnItem(Observer observer, Item item) {
-        System.out.println(String.format("%s finds a precious item[%s]", getName(), item.getName() ) );
+        System.out.println(String.format("%s finds a precious item[%s] of Type[%s]", getName(), item.getName(), item.getType().getName() ) );
         if ( observer.hasLostItem( item ) ){
             observers.put( item.getType(), observer );
         }
@@ -62,7 +62,7 @@ public class Thief implements Hobbit {
         if( item != null && observers != null && observers.size() > 0 ){
             for (Map.Entry<ItemType, Observer> itemTypeObserverEntry : observers.entrySet()) {
                 if(itemTypeObserverEntry.getKey() == item.getType() ){
-                    System.out.println(String.format("Notifying Observer[%s] ", observer.getClass().getSimpleName() ) );
+                    System.out.println(String.format("Notifying Observer[%s]... ", observer.getClass().getSimpleName() ) );
                     itemTypeObserverEntry.getValue().update(getName(), item);
                 }
             }
