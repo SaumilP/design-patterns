@@ -5,9 +5,9 @@ package design.patterns.memento;
  */
 public class App {
     public static void main(String[] args){
-        Gamer gamer = new Gamer(100);
+        Gamer gamer = new Gamer(5);
         Memento memento = gamer.createMemento();
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 5; i++){
             System.out.println("==== " + i);
             System.out.println("Current : " + gamer);
             gamer.bet();

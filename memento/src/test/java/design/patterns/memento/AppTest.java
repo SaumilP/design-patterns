@@ -3,7 +3,7 @@ package design.patterns.memento;
 import org.junit.Test;
 
 /**
- * Created by PATEL1 on 1/1/15.
+ * Unit Test for {@link AppTest}
  */
 public class AppTest {
     @Test public void test(){
