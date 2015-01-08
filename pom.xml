@@ -62,6 +62,7 @@
 		<module>service-locator</module>
         <module>memento</module>
         <module>nullobject</module>
+        <module>method-object</module>
     </modules>
 
     <developers>
