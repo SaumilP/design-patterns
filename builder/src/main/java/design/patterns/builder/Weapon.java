@@ -1,7 +1,7 @@
 package design.patterns.builder;
 
 /**
- * Created by PATEL1 on 12/27/14.
+ * Weapon Enumeration
  */
 public enum Weapon {
     DAGGER, SWORD, AXE, WARHAMMER, BOW;
