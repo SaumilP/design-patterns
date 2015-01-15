@@ -12,7 +12,7 @@ Patterns
 All Different patterns are divided into majorly four  categories specified below.
 
 #### Creational Patterns ####
-- ![Alt text](blob/master/abstract-factory/abstract-factory-class-diag.png?raw=true "Abstract Factory")
+- ![Alt text](tree/master/abstract-factory "Abstract Factory")
 - Builder
 - Factory Method
 - Prototype
