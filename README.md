@@ -12,39 +12,39 @@ Patterns
 All Different patterns are divided into majorly four  categories specified below.
 
 #### Creational Patterns ####
-- [Abstract Factory](tree/master/abstract-factory)
-- Builder
-- Factory Method
-- Prototype
-- Singleton
+- [Abstract Factory](abstract-factory)
+- [Builder](builder)
+- [Factory Method](factory-method)
+- [Prototype](prototype)
+- [Singleton](singleton)
 
 #### Structural Patterns ####
-- Adapter
-- Bridge
-- Facade
-- Flyweight
-- Composite
-- Decorator
-- Proxy
-- Service Locator
+- [Adapter](adapter)
+- [Bridge](bridge)
+- [Facade](facade)
+- [Flyweight](flyweight)
+- [Composite](composite)
+- [Decorator](decorator)
+- [Proxy](proxy)
+- [Service Locator](service-locator)
 
 #### Behavioral Patterns ####
-- Chain Of Responsibilty
-- Command
-- Iterator
-- Interpreter
-- Mediator
-- Memento
-- Model-View-Controller
-- Observer
-- State
-- Strategy
-- Template Method
-- Visitor
+- [Chain Of Responsibilty](chain)
+- [Command](command)
+- [Iterator](iterator)
+- [Interpreter](interpreter)
+- [Mediator](mediator)
+- [Memento](memento)
+- [Model-View-Presenter](model-view-presenter)
+- [Observer](observer)
+- [State](state)
+- [Strategy](strategy)
+- [Template Method](template-method)
+- [Visitor](visitor)
 
 ### Anti-Patterns ####
-- Double-Checked Locking
-- Method Object
+- [Double-Checked Locking](double-checked-locking)
+- [Method Object](method-object)
 
 Issues
 ======
