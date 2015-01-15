@@ -48,4 +48,4 @@ All Different patterns are divided into majorly four  categories specified below
 
 Issues
 ======
-Please feel free to contact me if you find any issues around the examples & relative object design.
+Please feel free to contact me if you find any issues around the examples or relative object design.
