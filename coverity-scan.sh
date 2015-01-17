@@ -5,8 +5,8 @@
 
 # The following variables must be set manually based on local machine directory structure:
 TOKEN=5qfopYzjggQ3AEE227Gojw
-EMAIL=saumilp@gmail.com
-COVTOOL=/Users/SaumilPatel/Tools/cov-analysis
+EMAIL=saumilpatel1@gmail.com
+COVTOOL=/Users/saumilpatel/Tools/cov-analysis
 
 if [ ! -r paths.mk ]; then
 	echo "Cannot find 'paths.mk', run in the root of a configured DesignPatterns source tree!"
@@ -41,18 +41,17 @@ fi
 
 export PATH="$PATH:$COVTOOL/bin"
 
-#cov-build --dir cov-int make build build-scripts
 cov-build --dir cov-int mvn -DskipTests=true compile
 
 ARCHIVE=DesignPatterns-scan.tar.xz
 
 echo "Compressing scan directory 'cov-int' into '$ARCHIVE'..."
 
-tar caf "$ARCHIVE" cov-int
+tar -czf "$ARCHIVE" cov-int
 
 echo "Submitting '$VERSION' '$DESC'"
 
-TMP=`mktemp --tmpdir curl-cov-submit-XXXXXX.html`
+TMP=`mktemp -d /tmp/curl-cov-submit-XXXXXX.html`
 
 curl --form token="$TOKEN" \
   --form project=design-patterns
