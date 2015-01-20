@@ -20,7 +20,7 @@ public class CriteriaType implements Criteria {
     @Override public List<Animal> meetCriteria(List<Animal> animals) {
         List<Animal> typeAnimals = new ArrayList<>();
 
-        for (Animal animal : typeAnimals) {
+        for (Animal animal : animals) {
             if(animal.getType() == type ){
                 typeAnimals.add(animal);
             }
