@@ -27,6 +27,7 @@ All Different patterns are divided into majorly four  categories specified below
 - [Decorator](decorator)
 - [Proxy](proxy)
 - [Service Locator](service-locator)
+- [Criteria](filter)
 
 #### Behavioral Patterns ####
 - [Chain Of Responsibilty](chain)

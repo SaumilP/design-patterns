@@ -63,6 +63,7 @@
         <module>memento</module>
         <module>nullobject</module>
         <module>method-object</module>
+        <module>filter</module>
     </modules>
 
     <developers>
