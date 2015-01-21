@@ -10,9 +10,9 @@ public class Batman implements RichRoyalty {
     private boolean isReadyForNightTroll = false;
     private boolean isThursty = false;
 
-    @Override public void getDrink() {
+    /*@Override public void getDrink() {
         isThursty = true;
-    }
+    }*/
 
     @Override public void needBatMobile() {
         isReadyForNightTroll = true;
