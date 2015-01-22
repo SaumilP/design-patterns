@@ -43,11 +43,11 @@ public class App {
 
     static List<Animal> prepareAnimalList(){
         EnumSet<Feature> mammalFeautres = EnumSet.of( Feature.HAS_BACKBONE, Feature.CHAMBERED_HEART, Feature.HAVE_LUNGS );
-        EnumSet<Feature> reptileFeautres = EnumSet.of( Feature.HAS_BACKBONE, Feature.CHAMBERED_HEART, Feature.HAVE_LUNGS );
-        EnumSet<Feature> aquaticFeautres = EnumSet.of( Feature.HAS_BACKBONE, Feature.CHAMBERED_HEART, Feature.HAVE_LUNGS );
-        EnumSet<Feature> birdFeautres = EnumSet.of( Feature.HAS_BACKBONE, Feature.CHAMBERED_HEART, Feature.HAVE_LUNGS );
+        EnumSet<Feature> reptileFeautres = EnumSet.of( Feature.IS_COLD_BLOODED, Feature.IS_VERTEBRATE );
+        EnumSet<Feature> aquaticFeautres = EnumSet.of( Feature.HAS_SCALE, Feature.HAVE_LUNGS );
+        EnumSet<Feature> birdFeautres = EnumSet.of( Feature.HAS_BACKBONE, Feature.HAS_FUR, Feature.HAVE_LUNGS );
         EnumSet<Feature> amphibianFeautres = EnumSet.of( Feature.HAS_BACKBONE, Feature.CHAMBERED_HEART, Feature.HAVE_LUNGS );
-        EnumSet<Feature> invertebrateFeautres = EnumSet.of( Feature.HAS_BACKBONE, Feature.CHAMBERED_HEART, Feature.HAVE_LUNGS );
+        EnumSet<Feature> invertebrateFeautres = EnumSet.of( Feature.IS_AMNIOTES, Feature.CHAMBERED_HEART );
 
         List<Animal> animals = new ArrayList<>();
         animals.add( new Animal(AnimalType.MAMMAL, "Poe", new ArrayList<>( mammalFeautres ), Gender.MALE));
