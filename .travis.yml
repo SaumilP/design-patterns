@@ -1,13 +1,13 @@
 language: java
 jdk:
   - openjdk7
+
 branches:
   only:
     - master
+
 env:
   global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
    - secure: "P0m+VCrbrVn3ivv3JHg8beXHtOp140vwPXnscAXmk7VpqmsV80FjR3LdcnpGvghAAm8kGmHPro9NCjOe2IbQBvK+ILk21NmZn42gyOZtcTE7u0+Ftx1T5f0VoOOYgKLzuStSVkmHmiS9in7HYpLXKlgiEzvUwk2g2eP41rJeEKA="
 
 addons:
@@ -19,5 +19,10 @@ addons:
     build_command_prepend: "mvn clean"
     build_command:   "mvn -DskipTests=true compile"
     branch_pattern: coverity_scan
+
+install:
+  mvn package
+
 script:
   mvn compile test
+
