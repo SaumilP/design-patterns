@@ -64,6 +64,7 @@
         <module>nullobject</module>
         <module>method-object</module>
         <module>filter</module>
+        <module>state-machine</module>
     </modules>
 
     <developers>
