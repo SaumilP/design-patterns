@@ -47,6 +47,9 @@ All Different patterns are divided into majorly four  categories specified below
 - [Double-Checked Locking](double-checked-locking)
 - [Method Object](method-object)
 
+### Hybrid Patterns ####
+- [Finite State Machine](state-machine)
+
 Issues
 ======
 Please feel free to contact me if you find any issues around the examples or relative object design.
