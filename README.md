@@ -49,6 +49,7 @@ All Different patterns are divided into majorly four  categories specified below
 
 ### Hybrid Patterns ####
 - [Finite State Machine](state-machine)
+- [Pipes And Filters](pipes-and-filters)
 
 Issues
 ======
