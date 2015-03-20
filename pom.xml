@@ -29,6 +29,7 @@
 		<apache.maven.dependency-plugin.version>2.8</apache.maven.dependency-plugin.version>
         <apache.maven-surefire-report-plugin.version>2.9</apache.maven-surefire-report-plugin.version>
 		<findbugs.maven.version>2.5.2</findbugs.maven.version>
+        <common-io.version>2.4</common-io.version>
 		<findbugs.includefilter.xml />
 		<findbugs.excludefilter.xml />
 	</properties>
@@ -65,6 +66,7 @@
         <module>method-object</module>
         <module>filter</module>
         <module>state-machine</module>
+        <module>pipes-and-filters</module>
     </modules>
 
     <developers>
@@ -78,6 +80,11 @@
 
     <dependencyManagement>
 		<dependencies>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${common-io.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-jdk14</artifactId>
