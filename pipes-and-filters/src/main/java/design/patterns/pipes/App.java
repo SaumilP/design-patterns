@@ -12,14 +12,15 @@ import design.patterns.pipes.stages.Stage;
 public class App {
     public static void main(String[] args) throws Exception {
         Stage loadFile = new FileLoader("SecretMessage.txt");
+        Stage cipher = new CeasarCipher(13);
         DataContext inputContext = new DataContext();
 
         Pipeline.create()
                 .use(loadFile)
                 .use(new Printer("FileLoader"))
-                .use(new CeasarCipher(13))
+                .use(cipher)
                 .use(new Printer("Cipher"))
-                .use(new CeasarCipher(13))
+                .use(cipher)
                 .use(new Printer("Decipher"))
                 .execute(inputContext);
     }
