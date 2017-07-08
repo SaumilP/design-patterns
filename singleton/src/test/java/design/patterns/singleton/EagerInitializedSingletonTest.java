@@ -1,19 +1,16 @@
 package design.patterns.singleton;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 
 /**
- * Created by PATEL1 on 12/28/14.
+ * Simple Test case for eagerly initialized singleton
  */
-public class ReflectionSingletonTest {
+public class EagerInitializedSingletonTest {
 
-    private static final Logger Log = LoggerFactory.getLogger(ReflectionSingletonTest.class);
-
-    @Test public void test() throws Exception {
+    @Test
+    public void test() throws Exception {
         EagerInitializedSingleton instanceOne = EagerInitializedSingleton.getInstance();
         EagerInitializedSingleton instanceTwo = null;
 
