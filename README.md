@@ -57,51 +57,51 @@ Open the project as a Maven project using pom.xml in IntelliJ IDEA or Eclipse.
 
 ### Creational Patterns
 
-| Pattern          | Folder              | Typical Use Case            |
-|------------------|---------------------|-----------------------------|
-| Abstract Factory | `abstract-factory/` | Families of related objects |
-| Builder          | `builder/`          | Complex object construction |
-| Factory Method   | `factory-method/`   | Delegating object creation  |
-| Prototype        | `prototype/`        | Cloning costly objects      |
-| Singleton        | `singleton/`        | Controlled global access    |
+| Pattern          | Folder                                    | Typical Use Case            |
+|------------------|-------------------------------------------|-----------------------------|
+| Abstract Factory | [`abstract-factory/`](./abstract-factory) | Families of related objects |
+| Builder          | [`builder/`](./builder)                   | Complex object construction |
+| Factory Method   | [`factory-method/`](./factory-method)     | Delegating object creation  |
+| Prototype        | [`prototype/`](./prototype)               | Cloning costly objects      |
+| Singleton        | [`singleton/`](./singleton)               | Controlled global access    |
 
 ### Structural Patterns
 
-| Pattern   | Folder       | Typical Use Case              |
-|-----------|--------------|-------------------------------|
-| Adapter   | `adapter/`   | Interface compatibility       |
-| Bridge    | `bridge/`    | Decoupling abstraction & impl |
-| Composite | `composite/` | Tree structures               |
-| Decorator | `decorator/` | Runtime behavior extension    |
-| Facade    | `facade/`    | Simplified subsystem access   |
-| Flyweight | `flyweight/` | Memory optimization           |
-| Proxy     | `proxy/`     | Controlled access             |
+| Pattern   | Folder                      | Typical Use Case              |
+|-----------|-----------------------------|-------------------------------|
+| Adapter   | [`adapter/`](./adapter)     | Interface compatibility       |
+| Bridge    | [`bridge/`](./bridge)       | Decoupling abstraction & impl |
+| Composite | [`composite/`](./composite) | Tree structures               |
+| Decorator | [`decorator/`](./decorator) | Runtime behavior extension    |
+| Facade    | [`facade/`](./facade)       | Simplified subsystem access   |
+| Flyweight | [`flyweight/`](./flyweight) | Memory optimization           |
+| Proxy     | [`proxy/`](./proxy)         | Controlled access             |
 
 
 ### Behavioral Patterns
 
-| Pattern                 | Folder                  | Typical Use Case            |
-|-------------------------|-------------------------|-----------------------------|
-| Chain of Responsibility | `chain/`                | Request pipelines           |
-| Command                 | `command/`              | Action encapsulation        |
-| Interpreter             | `interpreter/`          | DSL-like grammars           |
-| Iterator                | `iterator/`             | Collection traversal        |
-| Mediator                | `mediator/`             | Interaction centralization  |
-| Memento                 | `memento/`              | State snapshots             |
-| Observer                | `observer/`             | Event-driven updates        |
-| State                   | `state/`                | Workflow/state machines     |
-| Strategy                | `strategy/`             | Algorithm selection         |
-| Template Method         | `template-method/`      | Algorithm skeletons         |
-| Visitor                 | `visitor/`              | Operations on object graphs |
-| MVP                     | `model-view-presenter/` | Presentation separation     |
+| Pattern                 | Folder                                            | Typical Use Case            |
+|-------------------------|---------------------------------------------------|-----------------------------|
+| Chain of Responsibility | [`chain/`](./chain)                               | Request pipelines           |
+| Command                 | [`command/`](./command)                           | Action encapsulation        |
+| Interpreter             | [`interpreter/`](./interpreter)                   | DSL-like grammars           |
+| Iterator                | [`iterator/`](./iterator)                         | Collection traversal        |
+| Mediator                | [`mediator/`](./mediator)                         | Interaction centralization  |
+| Memento                 | [`memento/`](./memento)                           | State snapshots             |
+| Observer                | [`observer/`](./observer)                         | Event-driven updates        |
+| State                   | [`state/`](./state)                               | Workflow/state machines     |
+| Strategy                | [`strategy/`](./strategy)                         | Algorithm selection         |
+| Template Method         | [`template-method/`](./template-method)           | Algorithm skeletons         |
+| Visitor                 | [`visitor/`](./visitor)                           | Operations on object graphs |
+| MVP                     | [`model-view-presenter/`](./model-view-presenter) | Presentation separation     |
 
 ### Hybrid / Reference Patterns
 
-- Finite State Machine — `state-machine/`
-- Pipes & Filters — `pipes-and-filters/`
-- Service Locator — `service-locator/`
-- Double-Checked Locking — `double-checked-locking/`
-- Method Object — `method-object/`
+- Finite State Machine — [`state-machine/`](./state-machine)
+- Pipes & Filters — [`pipes-and-filters/`](./pipes-and-filters)
+- Service Locator — [`service-locator/`](./service-locator)
+- Double-Checked Locking — [`double-checked-locking/`](./double-checked-locking)
+- Method Object — [`method-object/`](./method-object)
 
 ---
 
