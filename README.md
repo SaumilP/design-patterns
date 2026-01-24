@@ -148,24 +148,17 @@ For each pattern folder, focus on:
 
 ## 🤝 Contributing
 
-Contributions are welcome and encouraged.
-
-**Suggested contributions**:
+Contributions are welcome and encouraged!
 
 - Improved examples with clearer intent
 - Additional tests that demonstrate behavior
 - Documentation clarifications
 - New patterns with justification
 
-**Workflow**:
-
-1. Fork the repository 
-2. Create a branch (feat/<pattern-name> or docs/<improvement>)
-3. Commit focused changes 
-4. Open a PR with rationale and trade-offs
+see [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License — free to use, modify, and distribute.
+This project is licensed under the [MIT License](./LICENSE) — free to use, modify, and distribute.
