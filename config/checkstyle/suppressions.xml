@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+  <!-- Allow generated or vendor files if you add any later -->
+  <suppress files=".*[/\\]target[/\\].*" checks=".*"/>
+  <!-- Allow small educational exceptions in tests -->
+  <suppress files=".*[/\\]src[/\\]test[/\\].*" checks="CyclomaticComplexity"/>
+</suppressions>

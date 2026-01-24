@@ -1,3 +1,7 @@
+![CI](https://github.com/SaumilP/design-patterns/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/github/license/SaumilP/design-patterns)
+![Java](https://img.shields.io/badge/Java-11%2B-orange)
+
 # Design Patterns in Java — Practical, Runnable Examples
 
 A curated, production-oriented collection of **classic software design patterns implemented in Java**.  

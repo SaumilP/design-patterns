@@ -10,4 +10,4 @@ target
 *.ear
 *.iml
 *.uml
-.idea
+.idea/
