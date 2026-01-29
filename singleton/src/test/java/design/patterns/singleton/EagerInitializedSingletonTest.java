@@ -1,6 +1,6 @@
 package design.patterns.singleton;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 
@@ -9,8 +9,11 @@ import java.lang.reflect.Constructor;
  */
 public class EagerInitializedSingletonTest {
 
+    /**
+     * Verifies {@code shouldRunAppMain}.
+     */
     @Test
-    public void test() throws Exception {
+    public void shouldRunAppMain() throws Exception {
         EagerInitializedSingleton instanceOne = EagerInitializedSingleton.getInstance();
         EagerInitializedSingleton instanceTwo = null;
 

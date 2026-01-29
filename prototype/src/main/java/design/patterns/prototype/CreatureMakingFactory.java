@@ -1,7 +1,5 @@
 package design.patterns.prototype;
 
-import sun.font.CreatedFontTracker;
-
 import java.util.EnumMap;
 import java.util.Map;
 
