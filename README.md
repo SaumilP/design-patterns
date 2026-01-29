@@ -31,7 +31,7 @@ This repository is designed as a **long-term reference** for backend engineers, 
 
 ## 🛠 Tech Stack
 
-- **Language:** Java (11+)
+- **Language:** Java (21+)
 - **Build Tool:** Maven
 - **Paradigm:** Object-Oriented Design
 - **Testing:** JUnit (_where applicable_)
@@ -41,7 +41,7 @@ This repository is designed as a **long-term reference** for backend engineers, 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Java 11+ (Java 17/21 recommended)
+- Java 21+
 - Maven 3.8+
 
 ### Build & Test
