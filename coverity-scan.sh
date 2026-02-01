@@ -4,9 +4,9 @@
 # DesignPatterns-scan source-tree root) and submits it.
 
 # The following variables must be set manually based on local machine directory structure:
-TOKEN=5qfopYzjggQ3AEE227Gojw
-EMAIL=saumilpatel1@gmail.com
-COVTOOL=/Users/saumilpatel/Tools/cov-analysis
+TOKEN=${COVERTY_TOKEN}
+EMAIL=${COVERITY_EMAIL}
+COVTOOL=${COVERITY_TOOL_PATH}
 
 if [ ! -r paths.mk ]; then
 	echo "Cannot find 'paths.mk', run in the root of a configured DesignPatterns source tree!"
