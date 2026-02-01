@@ -24,6 +24,11 @@ jobs:
       - name: Install Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
+      - name: Verify rsvg-convert
+        run: |
+          which rsvg-convert
+          rsvg-convert --version
+
       - name: Generate master markdown
         run: |
           mkdir -p book-output
