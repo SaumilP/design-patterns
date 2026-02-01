@@ -26,8 +26,7 @@ jobs:
 
       - name: Verify rsvg-convert
         run: |
-          which rsvg-convert
-          rsvg-convert --version
+          command -v rsvg-convert && rsvg-convert --version || echo "rsvg-convert not found"
 
       - name: Generate master markdown
         run: |
