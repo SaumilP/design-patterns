@@ -1,0 +1,80 @@
+name: Build HTML and Deploy Pages
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name: Generate master markdown
+        run: |
+          mkdir -p book-output
+          echo "# Design Patterns - Comprehensive Guide" > book-output/design-patterns-book.md
+          echo "" >> book-output/design-patterns-book.md
+          echo "Generated: $(date -u)" >> book-output/design-patterns-book.md
+          echo "" >> book-output/design-patterns-book.md
+
+          if [ -f "README.md" ]; then
+            echo "---" >> book-output/design-patterns-book.md
+            echo "" >> book-output/design-patterns-book.md
+            cat README.md >> book-output/design-patterns-book.md
+            echo "" >> book-output/design-patterns-book.md
+          fi
+
+          for pattern in $(ls -d */ | grep -v "^\." | sort | sed 's/\///'); do
+            if [ -f "$pattern/README.md" ]; then
+              echo "---" >> book-output/design-patterns-book.md
+              echo "" >> book-output/design-patterns-book.md
+              cat "$pattern/README.md" >> book-output/design-patterns-book.md
+              echo "" >> book-output/design-patterns-book.md
+            fi
+          done
+
+      - name: Build HTML
+        run: |
+          mkdir -p book-output/html
+          pandoc book-output/design-patterns-book.md \
+            -o book-output/html/index.html \
+            --standalone \
+            --css=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css \
+            --table-of-contents \
+            --toc-depth=3 \
+            --number-sections \
+            --highlight-style=pygments
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: book-output/html
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
