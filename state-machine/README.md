@@ -1,10 +1,69 @@
-Finite State Machine Design Pattern
-==================================
-One of the handy design pattern - specially when requirement arises to start processing
-from any given state. Because this pattern is hybrid - combining State Design Pattern, Composite
-or Decorator & Factory Pattern - it makes it possible to compose actions in individual state.
+# State Machine Pattern
 
-> In this module very small rudimentary example has been taken to provide clear understanding of the pattern.
+## 📋 Overview
 
-#### Class Diagram ####
-![FSM](fsm-class-diag.png?raw=true "Finite State Machine Pattern")
+The **State Machine** pattern models complex workflows and state transitions using explicit state objects and transitions.
+
+---
+
+## 🎯 Intent
+
+**Problem Solved:**
+- Model complex workflows with multiple states
+- Manage state transitions
+- Enforce valid state transitions
+- Handle state-dependent behavior
+
+---
+
+## 👥 Roles & Responsibilities
+
+| Role | Responsibility |
+|------|-----------------|
+| State | Defines state interface |
+| ConcreteState | Implements state-specific behavior |
+| StateMachine | Context managing states |
+
+---
+
+## 💡 Implementation
+
+- States define valid transitions
+- Transitions are explicit
+- State machine validates transitions
+- Prevents invalid state combinations
+
+---
+
+## ⚖️ Trade-offs
+
+### Advantages ✅
+- Clear state modeling
+- Enforced valid transitions
+- Easy to visualize workflow
+- Prevents illegal states
+- Maintainable complex workflows
+
+### Disadvantages ❌
+- Increased complexity
+- Many state classes
+- Overhead for simple cases
+- State explosion risk
+- Difficult to modify existing states
+
+---
+
+## 🌍 Real-World Use Cases
+
+- Workflow engines
+- Protocol implementations
+- Game state management
+- Order processing
+- TCP connection states
+
+---
+
+## 📚 References
+
+- State Machine design
+- Workflow patterns

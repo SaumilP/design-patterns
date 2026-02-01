@@ -1,9 +1,70 @@
-Lazy Sequences Design Pattern
-=============================
-This design pattern is derived from Functional Programming language, and can be applied in java 8.
+# Lazy Sequence Pattern
 
-A _Lazy sequence_ is a data structure that is computed only when its elements are actually needed. All operations on lazy sequences, like _map()_ and _filter()_ are lazy are well, ppostponing invocation up to the moment when it is really necessary.
-Lazy sequences are always traversed from the beginning using very cheap first / rest decomposition.
+## 📋 Overview
 
-#### Class Diagram ####
-![Alt text](lazy-sequence-class-diag.png?raw=true "Lazy Sequence Pattern")
+The **Lazy Sequence** pattern defers sequence element computation until they're actually accessed, enabling efficient processing of potentially infinite sequences.
+
+---
+
+## 🎯 Intent
+
+**Problem Solved:**
+- Defer expensive computations
+- Handle potentially infinite sequences
+- Support streaming data processing
+- Reduce memory usage
+
+---
+
+## 👥 Roles & Responsibilities
+
+| Role | Responsibility |
+|------|-----------------|
+| LazySequence | Defers element computation |
+| ElementGenerator | Generates individual elements |
+| Client | Accesses elements on demand |
+
+---
+
+## 💡 Implementation
+
+- Elements computed on first access
+- Caching computed results
+- Support for infinite sequences
+- Memory-efficient processing
+
+---
+
+## ⚖️ Trade-offs
+
+### Advantages ✅
+- Deferred expensive computations
+- Memory efficient
+- Support infinite sequences
+- Streaming processing
+- Computation on demand
+
+### Disadvantages ❌
+- Harder to understand
+- Non-deterministic timing
+- Caching overhead
+- Debugging complexity
+- First-access latency
+
+---
+
+## 🌍 Real-World Use Cases
+
+- Stream API implementations
+- Iterator patterns
+- Reactive programming
+- Data pipeline processing
+- Infinite sequence generation
+
+---
+
+## 📚 References
+
+- Lazy evaluation patterns
+- Functional programming concepts
+- Stream processing
