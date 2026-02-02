@@ -35,6 +35,35 @@ The **Servant** pattern defines common functionality in a separate class (servan
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Servant {
+        +operation(served)
+    }
+    class ServedA
+    class ServedB
+    Client --> Servant
+    Servant --> ServedA
+    Servant --> ServedB
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Servant: operation(served)
+    Servant->>ServedA: doWork()
+    Servant-->>Client: result
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

@@ -25,6 +25,37 @@ The **Method Object** pattern converts a method into an object, enabling flexibl
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class MethodObject {
+        <<interface>>
+        +execute()
+    }
+    class ConcreteMethodObject
+    class Host {
+        +helper()
+    }
+    Client --> MethodObject
+    MethodObject <|-- ConcreteMethodObject
+    ConcreteMethodObject --> Host
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>MethodObject: execute()
+    MethodObject->>Host: helper()
+```
+
+---
+
 ## 🌍 Real-World Use Cases
 
 - Callback mechanisms

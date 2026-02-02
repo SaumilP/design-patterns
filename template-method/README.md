@@ -64,6 +64,34 @@ processor.process();
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class AbstractClass {
+        +templateMethod()
+        #primitiveOp1()
+        #primitiveOp2()
+    }
+    class ConcreteClass
+    AbstractClass <|-- ConcreteClass
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>AbstractClass: templateMethod()
+    AbstractClass->>AbstractClass: primitiveOp1()
+    AbstractClass->>AbstractClass: primitiveOp2()
+    AbstractClass-->>Client: done
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

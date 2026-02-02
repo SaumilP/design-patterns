@@ -66,6 +66,40 @@ context.request();
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Context {
+        -state: State
+        +request()
+        +setState(s: State)
+    }
+    class State {
+        <<interface>>
+        +handle(ctx: Context)
+    }
+    class ConcreteStateA
+    class ConcreteStateB
+    Context --> State
+    State <|-- ConcreteStateA
+    State <|-- ConcreteStateB
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Context: request()
+    Context->>State: handle(context)
+    State-->>Context: maybe change state
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

@@ -37,6 +37,41 @@ Visitor pattern is particularly useful when you have:
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Visitor {
+        <<interface>>
+        +visitConcreteElementA(e)
+        +visitConcreteElementB(e)
+    }
+    class ConcreteVisitor
+    class Element {
+        <<interface>>
+        +accept(v: Visitor)
+    }
+    class ConcreteElementA
+    class ConcreteElementB
+    Visitor <|-- ConcreteVisitor
+    Element <|-- ConcreteElementA
+    Element <|-- ConcreteElementB
+    Element --> Visitor
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Element: accept(visitor)
+    Element->>Visitor: visit(element)
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

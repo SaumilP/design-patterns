@@ -35,6 +35,43 @@ The **Lazy Sequence** pattern defers sequence element computation until they're 
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class LazySequence {
+        -cache: Map
+        -generator: ElementGenerator
+        +get(index)
+    }
+    class ElementGenerator {
+        <<interface>>
+        +compute(index)
+    }
+    Client --> LazySequence
+    LazySequence --> ElementGenerator
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>LazySequence: get(index)
+    alt cached
+        LazySequence-->>Client: element
+    else not cached
+        LazySequence->>ElementGenerator: compute(index)
+        ElementGenerator-->>LazySequence: element
+        LazySequence-->>Client: element
+    end
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

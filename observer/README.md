@@ -71,6 +71,42 @@ subject.notifyObservers("Event occurred");
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Subject {
+        +attach(o: Observer)
+        +detach(o: Observer)
+        +notify()
+    }
+    class ConcreteSubject
+    class Observer {
+        <<interface>>
+        +update()
+    }
+    class ConcreteObserver
+    Subject <|-- ConcreteSubject
+    Observer <|-- ConcreteObserver
+    Subject --> Observer
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant Observer
+    participant Subject
+    Observer->>Subject: attach()
+    Subject->>Subject: changeState()
+    Subject->>Observer: notify()
+    Observer->>Observer: update()
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

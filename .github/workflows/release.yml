@@ -24,7 +24,17 @@ jobs:
             texlive-fonts-recommended \
             texlive-latex-extra \
             librsvg2-bin \
+            libgbm1 \
             zip
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Mermaid CLI
+        run: |
+          npm install -g @mermaid-js/mermaid-cli
       
       - name: Verify rsvg-convert
         run: |
@@ -54,10 +64,18 @@ jobs:
             fi
           done
 
+      - name: Render Mermaid diagrams
+        run: |
+          mkdir -p book-output/diagrams
+          python3 scripts/render_mermaid.py \
+            book-output/design-patterns-book.md \
+            book-output/design-patterns-book.with-diagrams.md \
+            book-output/diagrams
+
       - name: Build HTML
         run: |
           mkdir -p book-output/html
-          pandoc book-output/design-patterns-book.md \
+          pandoc book-output/design-patterns-book.with-diagrams.md \
             -o book-output/html/index.html \
             --standalone \
             --css=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css \
@@ -71,7 +89,7 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
 
-          p = Path("book-output/design-patterns-book.md")
+          p = Path("book-output/design-patterns-book.with-diagrams.md")
           s = p.read_text(encoding="utf-8")
 
           # Replace common escape sequences that break LaTeX when they appear in normal text.
@@ -81,19 +99,19 @@ jobs:
           s = s.replace(r"\r", r"\\textbackslash r")
 
           p.write_text(s, encoding="utf-8")
-          print("Sanitized book-output/design-patterns-book.md")
+          print("Sanitized book-output/design-patterns-book.with-diagrams.md")
           PY
 
       - name: Debug LaTeX output (if PDF fails)
         if: failure()
         run: |
-          pandoc --from=gfm book-output/design-patterns-book.md -t latex -o book-output/debug.tex || true
+          pandoc --from=gfm book-output/design-patterns-book.with-diagrams.md -t latex -o book-output/debug.tex || true
           nl -ba book-output/debug.tex | sed -n '470,520p' || true
 
       - name: Build PDF
         run: |
           mkdir -p book-output/pdf
-          pandoc --from=gfm book-output/design-patterns-book.md \
+          pandoc --from=gfm book-output/design-patterns-book.with-diagrams.md \
             -o book-output/pdf/design-patterns-book.pdf \
             --pdf-engine=xelatex \
             --table-of-contents \

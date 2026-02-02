@@ -86,20 +86,21 @@ logistics.planDelivery("Package");
 
 ```mermaid
 classDiagram
+    class Client
     class Creator {
         <<abstract>>
-        +createProduct() Product
-        +businessLogic()
+        +factoryMethod(): Product
+        +anOperation()
     }
-    class ConcreteCreator {
-        +createProduct() ConcreteProduct
-    }
+    class ConcreteCreator
     class Product {
         <<interface>>
+        +use()
     }
     class ConcreteProduct
+    Client --> Creator
     Creator <|-- ConcreteCreator
-    Product <|.. ConcreteProduct
+    Product <|-- ConcreteProduct
     Creator --> Product
 ```
 
@@ -110,13 +111,11 @@ classDiagram
 ```mermaid
 sequenceDiagram
     actor Client
-    participant Creator
-    participant Product
-    Client->>Creator: request()
+    Client->>Creator: anOperation()
     Creator->>Creator: factoryMethod()
-    Creator->>Product: create
-    Product-->>Creator: instance
-    Creator-->>Client: product
+    Creator->>Product: use()
+    Product-->>Creator: result
+    Creator-->>Client: result
 ```
 
 ---

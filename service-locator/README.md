@@ -32,6 +32,40 @@ Service Locator is often considered an anti-pattern. **Dependency Injection** is
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class ServiceLocator {
+        +getService(name)
+    }
+    class Service {
+        <<interface>>
+        +execute()
+    }
+    class ConcreteServiceA
+    class ConcreteServiceB
+    Client --> ServiceLocator
+    Service <|-- ConcreteServiceA
+    Service <|-- ConcreteServiceB
+    ServiceLocator --> Service
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>ServiceLocator: getService(name)
+    ServiceLocator-->>Client: Service
+    Client->>Service: execute()
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

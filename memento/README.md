@@ -35,6 +35,40 @@ The **Memento** pattern captures and externalizes an object's internal state wit
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Originator {
+        +createMemento(): Memento
+        +restore(m: Memento)
+    }
+    class Memento
+    class Caretaker {
+        -history: List<Memento>
+    }
+    Client --> Originator
+    Client --> Caretaker
+    Originator --> Memento
+    Caretaker --> Memento
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Originator: createMemento()
+    Originator-->>Client: Memento
+    Client->>Caretaker: store(memento)
+    Client->>Originator: restore(memento)
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

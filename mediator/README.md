@@ -36,6 +36,44 @@ The **Mediator** pattern defines an object that encapsulates how a set of object
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Mediator {
+        <<interface>>
+        +notify(sender, event)
+    }
+    class ConcreteMediator
+    class Colleague {
+        -mediator: Mediator
+        +send(event)
+    }
+    class ColleagueA
+    class ColleagueB
+    Mediator <|-- ConcreteMediator
+    Colleague <|-- ColleagueA
+    Colleague <|-- ColleagueB
+    Colleague --> Mediator
+    ConcreteMediator --> ColleagueA
+    ConcreteMediator --> ColleagueB
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant ColleagueA
+    participant Mediator
+    participant ColleagueB
+    ColleagueA->>Mediator: notify(A, event)
+    Mediator->>ColleagueB: receive(event)
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

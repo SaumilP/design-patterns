@@ -26,13 +26,34 @@ Please see the `src/` directory for complete, executable code examples demonstra
 
 ## 📊 Class Diagram
 
-
+```mermaid
+classDiagram
+    class Client
+    class Flyweight {
+        <<interface>>
+        +operation(extrinsic)
+    }
+    class ConcreteFlyweight
+    class FlyweightFactory {
+        -pool: Map
+        +getFlyweight(key)
+    }
+    Client --> FlyweightFactory
+    Flyweight <|-- ConcreteFlyweight
+    FlyweightFactory --> Flyweight
+```
 
 ---
 
 ## 🔄 Sequence Diagram
 
-
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>FlyweightFactory: getFlyweight(key)
+    FlyweightFactory-->>Client: Flyweight
+    Client->>Flyweight: operation(extrinsicState)
+```
 
 ---
 

@@ -35,6 +35,41 @@ The **Filter** pattern (or Criteria pattern) provides a way to filter collection
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Criteria {
+        <<interface>>
+        +meetCriteria(items)
+    }
+    class ConcreteCriteriaA
+    class ConcreteCriteriaB
+    class AndCriteria
+    class OrCriteria
+    Client --> Criteria
+    Criteria <|-- ConcreteCriteriaA
+    Criteria <|-- ConcreteCriteriaB
+    Criteria <|-- AndCriteria
+    Criteria <|-- OrCriteria
+    AndCriteria --> Criteria
+    OrCriteria --> Criteria
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Criteria: meetCriteria(items)
+    Criteria-->>Client: filteredItems
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

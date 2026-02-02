@@ -26,13 +26,36 @@ Please see the `src/` directory for complete, executable code examples demonstra
 
 ## 📊 Class Diagram
 
-
+```mermaid
+classDiagram
+    class Client
+    class Subject {
+        <<interface>>
+        +request()
+    }
+    class RealSubject
+    class Proxy {
+        -real: RealSubject
+        +request()
+    }
+    Client --> Subject
+    Subject <|-- RealSubject
+    Subject <|-- Proxy
+    Proxy --> RealSubject
+```
 
 ---
 
 ## 🔄 Sequence Diagram
 
-
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Proxy: request()
+    Proxy->>RealSubject: request()
+    RealSubject-->>Proxy: result
+    Proxy-->>Client: result
+```
 
 ---
 

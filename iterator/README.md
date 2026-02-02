@@ -36,6 +36,45 @@ Java's Iterator interface:
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Iterator {
+        <<interface>>
+        +hasNext()
+        +next()
+    }
+    class ConcreteIterator
+    class Aggregate {
+        <<interface>>
+        +createIterator(): Iterator
+    }
+    class ConcreteAggregate
+    Client --> Aggregate
+    Aggregate <|-- ConcreteAggregate
+    Iterator <|-- ConcreteIterator
+    ConcreteAggregate --> ConcreteIterator
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Aggregate: createIterator()
+    Aggregate-->>Client: Iterator
+    loop until done
+        Client->>Iterator: hasNext()
+        Client->>Iterator: next()
+    end
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

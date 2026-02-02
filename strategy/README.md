@@ -61,6 +61,40 @@ context.executeSort(array);
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Context {
+        -strategy: Strategy
+        +setStrategy(s: Strategy)
+        +execute()
+    }
+    class Strategy {
+        <<interface>>
+        +algorithm()
+    }
+    class ConcreteStrategyA
+    class ConcreteStrategyB
+    Context --> Strategy
+    Strategy <|-- ConcreteStrategyA
+    Strategy <|-- ConcreteStrategyB
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Context: setStrategy(strategy)
+    Client->>Context: execute()
+    Context->>Strategy: algorithm()
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

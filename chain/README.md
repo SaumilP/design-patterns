@@ -85,19 +85,40 @@ handler1.handleRequest(new Request(RequestType.TYPE_A));
 
 ```mermaid
 classDiagram
+    class Client
+    class Request
     class Handler {
         <<abstract>>
-        #next Handler
-        +handleRequest(request)
+        -next: Handler
+        +setNext(h: Handler)
+        +handle(r: Request)
     }
-    class ConcreteHandler {
-        +handleRequest(request)
-    }
-    Handler <|-- ConcreteHandler
+    class ConcreteHandlerA
+    class ConcreteHandlerB
+    Client --> Handler
+    Handler <|-- ConcreteHandlerA
+    Handler <|-- ConcreteHandlerB
     Handler --> Handler
 ```
 
 ---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>HandlerA: handle(request)
+    alt canHandle
+        HandlerA-->>Client: handled
+    else pass
+        HandlerA->>HandlerB: handle(request)
+        HandlerB-->>Client: handled
+    end
+```
+
+---
+
 
 ## ⚖️ Trade-offs
 

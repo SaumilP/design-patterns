@@ -120,57 +120,42 @@ Hero mage = new Hero.HeroBuilder(Profession.MAGE, "Merlin")
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Director {
+        -builder: Builder
+        +construct()
+    }
+    class Builder {
+        <<interface>>
+        +buildPartA()
+        +buildPartB()
+        +getResult()
+    }
+    class ConcreteBuilder
+    class Product
+    Client --> Director
+    Director --> Builder
+    Builder <|-- ConcreteBuilder
+    ConcreteBuilder --> Product
+```
+
+---
+
 ## 🔄 Sequence Diagram
 
 ```mermaid
 sequenceDiagram
     actor Client
-    participant Builder as HeroBuilder
-    participant Product as Hero
-    
-    Client->>Builder: new HeroBuilder(profession, name)
-    Builder-->>Builder: initialize mandatory params
-    Client->>Builder: withHairColor(...)
-    Builder-->>Client: return this
-    Client->>Builder: withWeapon(...)
-    Builder-->>Client: return this
-    Client->>Builder: build()
-    Builder->>Product: new Hero(builder)
-    Product-->>Builder: instance
-    Builder-->>Client: Hero instance
-```
-
----
-
-## 📊 Class Diagram
-
-```mermaid
-classDiagram
-    class Hero {
-        -String name
-        -Profession profession
-        -HairType hairType
-        -HairColor hairColor
-        -Armor armor
-        -Weapon weapon
-    }
-    
-    class HeroBuilder {
-        -String name
-        -Profession profession
-        -HairType hairType
-        -HairColor hairColor
-        -Armor armor
-        -Weapon weapon
-        +HeroBuilder(profession, name)
-        +withHairType(HairType) HeroBuilder
-        +withHairColor(HairColor) HeroBuilder
-        +withArmor(Armor) HeroBuilder
-        +withWeapon(Weapon) HeroBuilder
-        +build() Hero
-    }
-    
-    HeroBuilder -->|creates| Hero
+    Client->>Director: construct()
+    Director->>Builder: buildPartA()
+    Director->>Builder: buildPartB()
+    Builder-->>Director: done
+    Client->>Builder: getResult()
+    Builder-->>Client: Product
 ```
 
 ---

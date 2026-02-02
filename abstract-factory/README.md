@@ -9,17 +9,25 @@ The **Abstract Factory** pattern - Provides an interface for creating families o
 ## 🎯 Intent
 
 **Problem Solved:**
+
 - You need to create families of related objects while ensuring they work together correctly; switch between families without modifying client code.
 
 **Use When:**
-- Your system needs multiple families of related products\n- Ensure only compatible family members are used\n- Switch between product families dynamically\n
+
+- Your system needs multiple families of related products
+- Ensure only compatible family members are used
+- Switch between product families dynamically
+
 ---
 
 ## 👥 Roles & Responsibilities
 
 | Role | Responsibility |
 |------|-----------------|
-| AbstractFactory |  Interface for creating products |\n| ConcreteFactory |  Implements product creation |\n| AbstractProduct |  Product interface |\n| ConcreteProduct |  Concrete implementations |
+| AbstractFactory |  Interface for creating products |
+| ConcreteFactory |  Implements product creation |
+| AbstractProduct |  Product interface |
+| ConcreteProduct |  Concrete implementations |
 
 ---
 
@@ -57,7 +65,9 @@ Castle castle = factory.createCastle();
 
 ## 🔀 Design Principles
 
-- **Dependency Inversion**\n- **Single Responsibility**\n- **Open/Closed Principle**
+- **Dependency Inversion**
+- **Single Responsibility**
+- **Open/Closed Principle**
 
 ---
 
@@ -65,9 +75,39 @@ Castle castle = factory.createCastle();
 
 ```mermaid
 classDiagram
-    class Abstraction {}
-    class Implementation {}
-    Abstraction --> Implementation
+    class Client
+    class AbstractFactory {
+        <<interface>>
+        +createProductA()
+        +createProductB()
+    }
+    class ConcreteFactory1
+    class ConcreteFactory2
+    class AbstractProductA {
+        <<interface>>
+    }
+    class AbstractProductB {
+        <<interface>>
+    }
+    class ProductA1
+    class ProductA2
+    class ProductB1
+    class ProductB2
+    AbstractFactory <|-- ConcreteFactory1
+    AbstractFactory <|-- ConcreteFactory2
+    AbstractProductA <|-- ProductA1
+    AbstractProductA <|-- ProductA2
+    AbstractProductB <|-- ProductB1
+    AbstractProductB <|-- ProductB2
+    ConcreteFactory1 --> ProductA1
+    ConcreteFactory1 --> ProductB1
+    ConcreteFactory2 --> ProductA2
+    ConcreteFactory2 --> ProductB2
+    AbstractFactory --> AbstractProductA
+    AbstractFactory --> AbstractProductB
+    Client --> AbstractFactory
+    Client --> AbstractProductA
+    Client --> AbstractProductB
 ```
 
 ---
@@ -77,9 +117,12 @@ classDiagram
 ```mermaid
 sequenceDiagram
     actor Client
-    participant Pattern
-    Client->>Pattern: request()
-    Pattern-->>Client: response
+    Client->>AbstractFactory: createProductA()
+    AbstractFactory-->>Client: AbstractProductA
+    Client->>AbstractFactory: createProductB()
+    AbstractFactory-->>Client: AbstractProductB
+    Client->>AbstractProductA: use()
+    Client->>AbstractProductB: use()
 ```
 
 ---
@@ -87,10 +130,18 @@ sequenceDiagram
 ## ⚖️ Trade-offs
 
 ### Advantages ✅
-- Isolates client from concrete classes\n- Ensures consistency among related products\n- Easy to swap product families\n- Centralizes product creation logic
+
+- Isolates client from concrete classes
+- Ensures consistency among related products
+- Easy to swap product families
+- Centralizes product creation logic
 
 ### Disadvantages ❌
-- More interfaces/classes required\n- Complex hierarchy\n- Adding new product type affects all factories\n- Overkill for simple scenarios
+
+- More interfaces/classes required
+- Complex hierarchy
+- Adding new product type affects all factories
+- Overkill for simple scenarios
 
 ---
 
@@ -106,13 +157,18 @@ sequenceDiagram
 
 | Anti-Pattern | Issue | Solution |
 |--------------|-------|----------|
-| Factory returns null | use Optional | Use appropriate implementation |\n| Leaky abstractions | stick to interfaces | Use appropriate implementation |\n| Single Responsibility violation | separate concerns | Use appropriate implementation |
+| Factory returns null | use Optional | Use appropriate implementation |
+| Leaky abstractions | stick to interfaces | Use appropriate implementation |
+| Single Responsibility violation | separate concerns | Use appropriate implementation |
 
 ---
 
 ## 🌍 Real-World Use Cases
 
-- Swing/AWT UI frameworks\n- Database drivers (MySQL, Postgres)\n- Cross-platform theme factories\n- Java Collections framework factories
+- Swing/AWT UI frameworks
+- Database drivers (MySQL, Postgres)
+- Cross-platform theme factories
+- Java Collections framework factories
 
 ---
 
@@ -120,7 +176,9 @@ sequenceDiagram
 
 | Alternative | When to Use |
 |-------------|------------|
-| Factory Method | When... |\n| Builder | When... |\n| Prototype | When... |
+| Factory Method | When... |
+| Builder | When... |
+| Prototype | When... |
 
 ---
 

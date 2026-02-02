@@ -27,6 +27,41 @@ The **Pipes and Filters** pattern processes data through a series of independent
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Source
+    class Pipe
+    class Filter {
+        +process(data)
+    }
+    class Sink
+    Source --> Pipe
+    Pipe --> Filter
+    Filter --> Pipe
+    Pipe --> Sink
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant Source
+    participant Pipe1
+    participant Filter
+    participant Pipe2
+    participant Sink
+    Source->>Pipe1: emit(data)
+    Pipe1->>Filter: data
+    Filter->>Pipe2: processed
+    Pipe2->>Sink: processed
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

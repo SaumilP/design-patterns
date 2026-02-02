@@ -26,13 +26,34 @@ Please see the `src/` directory for complete, executable code examples demonstra
 
 ## 📊 Class Diagram
 
-
+```mermaid
+classDiagram
+    class Client
+    class Facade {
+        +operation()
+    }
+    class SubsystemA
+    class SubsystemB
+    class SubsystemC
+    Client --> Facade
+    Facade --> SubsystemA
+    Facade --> SubsystemB
+    Facade --> SubsystemC
+```
 
 ---
 
 ## 🔄 Sequence Diagram
 
-
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Facade: operation()
+    Facade->>SubsystemA: doA()
+    Facade->>SubsystemB: doB()
+    Facade->>SubsystemC: doC()
+    Facade-->>Client: result
+```
 
 ---
 

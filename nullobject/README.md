@@ -32,6 +32,35 @@ logger.log("message");  // Works with NullLogger
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class AbstractObject {
+        <<interface>>
+        +operation()
+    }
+    class RealObject
+    class NullObject
+    Client --> AbstractObject
+    AbstractObject <|-- RealObject
+    AbstractObject <|-- NullObject
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>AbstractObject: operation()
+    AbstractObject-->>Client: result
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

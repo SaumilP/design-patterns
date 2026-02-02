@@ -26,13 +26,38 @@ Please see the `src/` directory for complete, executable code examples demonstra
 
 ## 📊 Class Diagram
 
-
+```mermaid
+classDiagram
+    class Client
+    class Component {
+        <<interface>>
+        +operation()
+    }
+    class ConcreteComponent
+    class Decorator {
+        -component: Component
+        +operation()
+    }
+    class ConcreteDecorator
+    Client --> Component
+    Component <|-- ConcreteComponent
+    Component <|-- Decorator
+    Decorator <|-- ConcreteDecorator
+    Decorator --> Component
+```
 
 ---
 
 ## 🔄 Sequence Diagram
 
-
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Decorator: operation()
+    Decorator->>Component: operation()
+    Component-->>Decorator: result
+    Decorator-->>Client: result
+```
 
 ---
 

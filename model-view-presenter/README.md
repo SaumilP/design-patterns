@@ -35,6 +35,46 @@ The **Model-View-Presenter** (MVP) pattern separates presentation logic from bus
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Model
+    class View {
+        <<interface>>
+        +render(data)
+    }
+    class Presenter {
+        -model: Model
+        -view: View
+        +onViewEvent()
+    }
+    class ConcreteView
+    View <|-- ConcreteView
+    Presenter --> Model
+    Presenter --> View
+    ConcreteView --> Presenter
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant View
+    participant Presenter
+    participant Model
+    User->>View: interact()
+    View->>Presenter: event()
+    Presenter->>Model: update()
+    Model-->>Presenter: data
+    Presenter->>View: render(data)
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

@@ -26,13 +26,37 @@ Please see the `src/` directory for complete, executable code examples demonstra
 
 ## 📊 Class Diagram
 
-
+```mermaid
+classDiagram
+    class Client
+    class Target {
+        <<interface>>
+        +request()
+    }
+    class Adapter {
+        +request()
+    }
+    class Adaptee {
+        +specificRequest()
+    }
+    Client --> Target
+    Target <|-- Adapter
+    Adapter --> Adaptee
+```
 
 ---
 
 ## 🔄 Sequence Diagram
 
-
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Target: request()
+    Target->>Adapter: request()
+    Adapter->>Adaptee: specificRequest()
+    Adaptee-->>Adapter: result
+    Adapter-->>Client: result
+```
 
 ---
 

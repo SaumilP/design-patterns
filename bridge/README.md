@@ -26,13 +26,39 @@ Please see the `src/` directory for complete, executable code examples demonstra
 
 ## 📊 Class Diagram
 
-
+```mermaid
+classDiagram
+    class Client
+    class Abstraction {
+        -implementor: Implementor
+        +operation()
+    }
+    class RefinedAbstraction
+    class Implementor {
+        <<interface>>
+        +operationImpl()
+    }
+    class ConcreteImplementorA
+    class ConcreteImplementorB
+    Client --> Abstraction
+    Abstraction <|-- RefinedAbstraction
+    Implementor <|-- ConcreteImplementorA
+    Implementor <|-- ConcreteImplementorB
+    Abstraction --> Implementor
+```
 
 ---
 
 ## 🔄 Sequence Diagram
 
-
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Abstraction: operation()
+    Abstraction->>Implementor: operationImpl()
+    Implementor-->>Abstraction: result
+    Abstraction-->>Client: result
+```
 
 ---
 

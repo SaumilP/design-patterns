@@ -35,6 +35,42 @@ The **State Machine** pattern models complex workflows and state transitions usi
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class StateMachine {
+        -current: State
+        +handle(event)
+    }
+    class State {
+        <<interface>>
+        +onEvent(event)
+    }
+    class ConcreteStateA
+    class ConcreteStateB
+    class Event
+    StateMachine --> State
+    State <|-- ConcreteStateA
+    State <|-- ConcreteStateB
+    StateMachine --> Event
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>StateMachine: handle(event)
+    StateMachine->>State: onEvent(event)
+    State-->>StateMachine: nextState
+    StateMachine-->>Client: transitioned
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

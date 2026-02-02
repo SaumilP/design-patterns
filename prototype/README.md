@@ -26,13 +26,28 @@ Please see the `src/` directory for complete, executable code examples demonstra
 
 ## 📊 Class Diagram
 
-
+```mermaid
+classDiagram
+    class Client
+    class Prototype {
+        <<interface>>
+        +clone()
+    }
+    class ConcretePrototype
+    Client --> Prototype
+    Prototype <|-- ConcretePrototype
+```
 
 ---
 
 ## 🔄 Sequence Diagram
 
-
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Prototype: clone()
+    Prototype-->>Client: copy
+```
 
 ---
 

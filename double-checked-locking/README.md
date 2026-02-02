@@ -47,6 +47,35 @@ public class DoubleCheckedLocking {
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Singleton {
+        -static instance: Singleton
+        +getInstance(): Singleton
+    }
+    Client --> Singleton
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Singleton: getInstance()
+    alt instance == null
+        Client->>Singleton: synchronize
+        Singleton->>Singleton: create instance
+    end
+    Singleton-->>Client: instance
+```
+
+---
+
 ## 📚 References
 
 - Double-Checked Locking pattern

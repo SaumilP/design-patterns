@@ -36,6 +36,42 @@ The **Interpreter** pattern defines a grammatical representation for a language 
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Context
+    class AbstractExpression {
+        <<interface>>
+        +interpret(ctx: Context)
+    }
+    class TerminalExpression
+    class NonterminalExpression {
+        -left: AbstractExpression
+        -right: AbstractExpression
+    }
+    Client --> AbstractExpression
+    AbstractExpression <|-- TerminalExpression
+    AbstractExpression <|-- NonterminalExpression
+    AbstractExpression --> Context
+    NonterminalExpression --> AbstractExpression
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>AbstractExpression: interpret(context)
+    AbstractExpression->>AbstractExpression: interpret(child)
+    AbstractExpression-->>Client: result
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

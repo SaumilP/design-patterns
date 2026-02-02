@@ -80,6 +80,45 @@ remote.undo();
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Invoker {
+        -command: Command
+        +setCommand(c: Command)
+        +invoke()
+    }
+    class Command {
+        <<interface>>
+        +execute()
+    }
+    class ConcreteCommand
+    class Receiver {
+        +action()
+    }
+    Client --> Invoker
+    Invoker --> Command
+    Command <|-- ConcreteCommand
+    ConcreteCommand --> Receiver
+```
+
+---
+
+## 🔄 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client->>Invoker: setCommand(cmd)
+    Client->>Invoker: invoke()
+    Invoker->>Command: execute()
+    Command->>Receiver: action()
+```
+
+---
+
 ## ⚖️ Trade-offs
 
 ### Advantages ✅

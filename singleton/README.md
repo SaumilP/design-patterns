@@ -111,35 +111,27 @@ public class BillPughSingleton {
 
 ---
 
+## 📊 Class Diagram
+
+```mermaid
+classDiagram
+    class Client
+    class Singleton {
+        -static instance: Singleton
+        +getInstance(): Singleton
+    }
+    Client --> Singleton
+```
+
+---
+
 ## 🔄 Sequence Diagram
 
 ```mermaid
 sequenceDiagram
     actor Client
-    participant SingletonClass
-    participant InstanceHolder
-    
-    Client->>SingletonClass: getInstance()
-    alt First Call
-        SingletonClass->>InstanceHolder: create instance
-        InstanceHolder-->>SingletonClass: instance
-    else Subsequent Calls
-        SingletonClass-->>SingletonClass: return cached instance
-    end
-    SingletonClass-->>Client: instance reference
-```
-
----
-
-## 📊 Class Diagram
-
-```mermaid
-classDiagram
-    class Singleton {
-        -Singleton instance$
-        -Singleton()
-        +getInstance() Singleton$
-    }
+    Client->>Singleton: getInstance()
+    Singleton-->>Client: instance
 ```
 
 ---
