@@ -15,7 +15,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Install Pandoc + TeX
+      - name: Install Pandoc + TeX and Chromium deps
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -25,6 +25,20 @@ jobs:
             texlive-latex-extra \
             librsvg2-bin \
             libgbm1 \
+            libnss3 \
+            libasound2 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxrandr2 \
+            libxss1 \
+            libxtst6 \
+            fonts-liberation \
+            ca-certificates \
+            lsb-release \
+            xdg-utils \
             zip
 
       - name: Setup Node.js
@@ -35,6 +49,13 @@ jobs:
       - name: Install Mermaid CLI
         run: |
           npm install -g @mermaid-js/mermaid-cli
+      
+      - name: Verify Mermaid CLI
+        run: |
+          if ! command -v mmdc >/dev/null 2>&1; then
+            npm install -g @mermaid-js/mermaid-cli
+          fi
+          mmdc --version || true
       
       - name: Verify rsvg-convert
         run: |

@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import os
+import json
 import re
 import subprocess
 from pathlib import Path
@@ -20,6 +21,14 @@ def render_mermaid_blocks(markdown: str, image_dir: Path, out_markdown_path: Pat
 
         if not png_path.exists():
             mmd_path.write_text(content, encoding="utf-8")
+            # Create a Puppeteer config file with sandboxing flags so CI runners
+            # (like GitHub Actions) that require `--no-sandbox` can launch Chromium.
+            puppeteer_cfg = {
+                "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+            }
+            cfg_path = image_dir / f"puppeteer-config-{digest}.json"
+            cfg_path.write_text(json.dumps(puppeteer_cfg), encoding="utf-8")
+
             subprocess.run(
                 [
                     "mmdc",
@@ -29,6 +38,8 @@ def render_mermaid_blocks(markdown: str, image_dir: Path, out_markdown_path: Pat
                     str(png_path),
                     "--backgroundColor",
                     "#ffffff",
+                    "--puppeteerConfigFile",
+                    str(cfg_path),
                 ],
                 check=True,
             )
