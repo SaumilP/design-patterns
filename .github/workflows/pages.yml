@@ -77,10 +77,15 @@ jobs:
       - name: Generate master markdown
         run: |
           mkdir -p book-output
-          echo "# Design Patterns - Comprehensive Guide" > book-output/design-patterns-book.md
-          echo "" >> book-output/design-patterns-book.md
-          echo "Generated: $(date -u)" >> book-output/design-patterns-book.md
-          echo "" >> book-output/design-patterns-book.md
+          cat > book-output/design-patterns-book.md <<EOF
+          ---
+          title: "Design Patterns in Java"
+          subtitle: "Practical, Runnable Examples"
+          date: "$(date -u +'%Y-%m-%d %H:%M UTC')"
+          lang: en
+          ---
+
+          EOF
 
           if [ -f "README.md" ]; then
             echo "---" >> book-output/design-patterns-book.md
@@ -130,10 +135,16 @@ jobs:
             -o book-output/html/index.html \
             --standalone \
             --css=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css \
+            --resource-path=book-output \
             --table-of-contents \
             --toc-depth=3 \
             --number-sections \
             --highlight-style=pygments
+
+      - name: Copy diagrams into HTML output
+        run: |
+          mkdir -p book-output/html/diagrams
+          cp book-output/diagrams/*.png book-output/html/diagrams/ || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

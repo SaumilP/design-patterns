@@ -1,0 +1,61 @@
+$if(lang)$
+\usepackage[$lang$]{babel}
+$endif$
+\documentclass[$if(fontsize)$$fontsize$,$endif$openany]{book}
+
+% Let Pandoc inject its default packages and settings
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(geometry)$
+\usepackage[$geometry$]{geometry}
+$endif$
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\title{$title$}
+$if(subtitle)$
+\newcommand{\subtitle}{$subtitle$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$else$
+\author{}
+$endif$
+$if(date)$
+\date{$date$}
+$else$
+\date{}
+$endif$
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\Huge\bfseries $title$\par}
+  $if(subtitle)$
+  \vspace{0.6cm}
+  {\Large \subtitle\par}
+  $endif$
+  \vfill
+  $if(date)$
+  {\large $date$\par}
+  $endif$
+  \vspace*{1cm}
+\end{titlepage}
+
+\frontmatter
+
+$if(toc)$
+\tableofcontents
+\clearpage
+$endif$
+
+\mainmatter
+
+$body$
+
+\end{document}

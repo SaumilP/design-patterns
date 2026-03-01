@@ -85,10 +85,15 @@ jobs:
       - name: Generate master markdown
         run: |
           mkdir -p book-output
-          echo "# Design Patterns - Comprehensive Guide" > book-output/design-patterns-book.md
-          echo "" >> book-output/design-patterns-book.md
-          echo "Generated: $(date -u)" >> book-output/design-patterns-book.md
-          echo "" >> book-output/design-patterns-book.md
+          cat > book-output/design-patterns-book.md <<EOF
+          ---
+          title: "Design Patterns in Java"
+          subtitle: "Practical, Runnable Examples"
+          date: "$(date -u +'%Y-%m-%d %H:%M UTC')"
+          lang: en
+          ---
+
+          EOF
 
           if [ -f "README.md" ]; then
             echo "---" >> book-output/design-patterns-book.md
@@ -144,10 +149,17 @@ jobs:
             -o book-output/html/index.html \
             --standalone \
             --css=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css \
+            --resource-path=book-output \
             --table-of-contents \
             --toc-depth=3 \
             --number-sections \
             --highlight-style=pygments
+
+      - name: Copy diagrams into HTML output
+        if: ${{ steps.build_html.outcome == 'success' }}
+        run: |
+          mkdir -p book-output/html/diagrams
+          cp book-output/diagrams/*.png book-output/html/diagrams/ || true
 
       - name: Sanitize markdown for LaTeX PDF
         if: ${{ steps.render_mermaid.outcome == 'success' }}
@@ -171,7 +183,7 @@ jobs:
       - name: Debug LaTeX output (if PDF fails)
         if: ${{ steps.build_pdf.outcome == 'failure' }}
         run: |
-          pandoc --from=gfm book-output/design-patterns-book.with-diagrams.md -t latex -o book-output/debug.tex || true
+          pandoc --from=gfm --resource-path=book-output book-output/design-patterns-book.with-diagrams.md -t latex -o book-output/debug.tex || true
           nl -ba book-output/debug.tex | sed -n '470,520p' || true
 
       - name: Build PDF
@@ -180,15 +192,23 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p book-output/pdf
-          pandoc --from=gfm book-output/design-patterns-book.with-diagrams.md \
+          pandoc --from=gfm --resource-path=book-output --top-level-division=chapter \
+            --template=book/latex/template.tex \
+            --include-in-header=book/latex/header.tex \
+            book-output/design-patterns-book.with-diagrams.md \
             -o book-output/pdf/design-patterns-book.pdf \
+            2> book-output/pdf/pandoc-pdf.log \
             --pdf-engine=xelatex \
             --table-of-contents \
             --toc-depth=3 \
             --number-sections \
             -V geometry:margin=1in \
             -V fontsize=11pt \
-            -V documentclass=article
+            -V documentclass=book
+          if grep -n "Could not fetch resource diagrams/" book-output/pdf/pandoc-pdf.log; then
+            echo "ERROR: Missing local diagram resources (diagrams/*)."
+            exit 1
+          fi
 
       - name: Package HTML site
         if: ${{ steps.build_html.outcome == 'success' }}
@@ -217,6 +237,7 @@ jobs:
             book-output/debug.tex
             book-output/design-patterns-book.with-diagrams.md
             book-output/diagrams
+            book-output/pdf/pandoc-pdf.log
 
       - name: Create GitHub Release and upload assets
         if: ${{ startsWith(github.ref, 'refs/tags/') && steps.mermaid_smoke.outcome == 'success' && steps.render_mermaid.outcome == 'success' && steps.build_html.outcome == 'success' && steps.build_pdf.outcome == 'success' }}

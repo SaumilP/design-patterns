@@ -152,11 +152,10 @@ For each pattern folder, focus on:
 
 ## 🛣 Roadmap
 
-- [ ] Add a short README.md inside each pattern folder 
-- [ ] Add UML-style diagrams (Mermaid) per pattern
-- [ ] Add pattern comparison guide (e.g. Strategy vs State vs Command)
-- [ ] Enforce formatting & static analysis
-- [ ] Publish tagged releases (v1.x)
+- [ ] More patterns
+- [ ] Better formatted PDF Book
+- [ ] Better formatted github-pages
+- [ ] Visible Diagrams in PDF Book
 
 ---
 
