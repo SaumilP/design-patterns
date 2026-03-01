@@ -37,3 +37,6 @@ Avoid them when:
 ## 🧭 Included Patterns
 
 - Pipes & Filters — [`pipes-and-filters/`](./pipes-and-filters)
+- Saga — [`saga/`](./saga)
+- CQRS — [`cqrs/`](./cqrs)
+- Transactional Outbox — [`transactional-outbox/`](./transactional-outbox)

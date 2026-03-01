@@ -25,6 +25,9 @@ architectural-patterns/model-view-presenter
 architectural-patterns/service-locator
 architectural-patterns/state-machine
 enterprise-integration-patterns/pipes-and-filters
+enterprise-integration-patterns/saga
+enterprise-integration-patterns/cqrs
+enterprise-integration-patterns/transactional-outbox
 reliability-patterns/double-checked-locking
 reliability-patterns/circuit-breaker
 reliability-patterns/nullobject

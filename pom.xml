@@ -67,7 +67,10 @@
         <module>architectural-patterns/state-machine</module>
 
 		<!-- Enterprise integration patterns -->
-        <module>enterprise-integration-patterns/pipes-and-filters</module>
+	        <module>enterprise-integration-patterns/pipes-and-filters</module>
+        <module>enterprise-integration-patterns/saga</module>
+        <module>enterprise-integration-patterns/cqrs</module>
+        <module>enterprise-integration-patterns/transactional-outbox</module>
 
 		<!-- Reliability patterns -->
 		<module>reliability-patterns/double-checked-locking</module>

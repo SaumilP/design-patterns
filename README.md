@@ -104,6 +104,9 @@ The repository is organized into **five root modules** to make it easier to navi
 ### Enterprise Integration Patterns
 
 - Pipes & Filters — [`enterprise-integration-patterns/pipes-and-filters/`](./enterprise-integration-patterns/pipes-and-filters)
+- Saga — [`enterprise-integration-patterns/saga/`](./enterprise-integration-patterns/saga)
+- CQRS — [`enterprise-integration-patterns/cqrs/`](./enterprise-integration-patterns/cqrs)
+- Transactional Outbox — [`enterprise-integration-patterns/transactional-outbox/`](./enterprise-integration-patterns/transactional-outbox)
 
 ### Reliability Patterns
 
