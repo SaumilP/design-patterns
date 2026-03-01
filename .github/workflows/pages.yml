@@ -52,6 +52,11 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - name: Install Mermaid CLI
         run: |
           npm install -g @mermaid-js/mermaid-cli
@@ -77,15 +82,14 @@ jobs:
       - name: Generate master markdown
         run: |
           mkdir -p book-output
-          cat > book-output/design-patterns-book.md <<EOF
-          ---
-          title: "Design Patterns in Java"
-          subtitle: "Practical, Runnable Examples"
-          date: "$(date -u +'%Y-%m-%d %H:%M UTC')"
-          lang: en
-          ---
-
-          EOF
+          {
+            printf '%s\n' '---'
+            printf '%s\n' 'title: "Design Patterns in Java"'
+            printf '%s\n' 'subtitle: "Practical, Runnable Examples"'
+            printf 'date: "%s"\n' "$(date -u +'%Y-%m-%d %H:%M UTC')"
+            printf '%s\n' 'lang: en'
+            printf '%s\n\n' '---'
+          } > book-output/design-patterns-book.md
 
           if [ -f "README.md" ]; then
             echo "---" >> book-output/design-patterns-book.md

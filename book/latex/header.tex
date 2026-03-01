@@ -4,16 +4,27 @@
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{framed}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{fancyhdr}
-\usepackage{geometry}
 \usepackage{titlesec}
 \usepackage{hyperref}
+\usepackage{xurl}
 \usepackage{fvextra}
 
 % Typography
 \setmainfont{TeX Gyre Pagella}
 \setsansfont{TeX Gyre Heros}
-\setmonofont{DejaVu Sans Mono}
+\setmonofont{TeX Gyre Cursor}
+
+% Pandoc helpers (avoid "Undefined control sequence \\tightlist" etc.)
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}%
+}
 
 % Links
 \hypersetup{
@@ -29,6 +40,10 @@
   {\chaptername\ \thechapter}
   {10pt}
   {\Huge}
+
+% Shaded code blocks (Pandoc uses the Shaded environment for highlighted blocks)
+\definecolor{shadecolor}{RGB}{245,245,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 
 % Code blocks (Pandoc Highlighting environment)
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{

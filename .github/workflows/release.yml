@@ -47,6 +47,11 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - name: Install Mermaid CLI
         run: |
           npm install -g @mermaid-js/mermaid-cli
@@ -85,15 +90,14 @@ jobs:
       - name: Generate master markdown
         run: |
           mkdir -p book-output
-          cat > book-output/design-patterns-book.md <<EOF
-          ---
-          title: "Design Patterns in Java"
-          subtitle: "Practical, Runnable Examples"
-          date: "$(date -u +'%Y-%m-%d %H:%M UTC')"
-          lang: en
-          ---
-
-          EOF
+          {
+            printf '%s\n' '---'
+            printf '%s\n' 'title: "Design Patterns in Java"'
+            printf '%s\n' 'subtitle: "Practical, Runnable Examples"'
+            printf 'date: "%s"\n' "$(date -u +'%Y-%m-%d %H:%M UTC')"
+            printf '%s\n' 'lang: en'
+            printf '%s\n\n' '---'
+          } > book-output/design-patterns-book.md
 
           if [ -f "README.md" ]; then
             echo "---" >> book-output/design-patterns-book.md
@@ -180,12 +184,6 @@ jobs:
           print("Sanitized book-output/design-patterns-book.with-diagrams.md")
           PY
 
-      - name: Debug LaTeX output (if PDF fails)
-        if: ${{ steps.build_pdf.outcome == 'failure' }}
-        run: |
-          pandoc --from=gfm --resource-path=book-output book-output/design-patterns-book.with-diagrams.md -t latex -o book-output/debug.tex || true
-          nl -ba book-output/debug.tex | sed -n '470,520p' || true
-
       - name: Build PDF
         if: ${{ steps.render_mermaid.outcome == 'success' }}
         id: build_pdf
@@ -197,18 +195,35 @@ jobs:
             --include-in-header=book/latex/header.tex \
             book-output/design-patterns-book.with-diagrams.md \
             -o book-output/pdf/design-patterns-book.pdf \
-            2> book-output/pdf/pandoc-pdf.log \
             --pdf-engine=xelatex \
+            --pdf-engine-opt=-interaction=nonstopmode \
+            --pdf-engine-opt=-halt-on-error \
             --table-of-contents \
             --toc-depth=3 \
             --number-sections \
             -V geometry:margin=1in \
             -V fontsize=11pt \
-            -V documentclass=book
+            -V documentclass=book \
+            --verbose \
+            2> book-output/pdf/pandoc-pdf.log || {
+              echo "ERROR: Pandoc PDF build failed. Last 200 lines of pandoc-pdf.log:";
+              tail -n 200 book-output/pdf/pandoc-pdf.log || true;
+              exit 1;
+            }
           if grep -n "Could not fetch resource diagrams/" book-output/pdf/pandoc-pdf.log; then
             echo "ERROR: Missing local diagram resources (diagrams/*)."
             exit 1
           fi
+
+      - name: Debug LaTeX output (if PDF fails)
+        if: ${{ steps.build_pdf.outcome == 'failure' }}
+        run: |
+          pandoc --from=gfm --resource-path=book-output book-output/design-patterns-book.with-diagrams.md -t latex -o book-output/debug.tex || true
+          echo "Wrote book-output/debug.tex (best-effort)."
+          nl -ba book-output/debug.tex | sed -n '470,520p' || true
+          echo ""
+          echo "Tail of book-output/pdf/pandoc-pdf.log (if present):"
+          tail -n 80 book-output/pdf/pandoc-pdf.log || true
 
       - name: Package HTML site
         if: ${{ steps.build_html.outcome == 'success' }}
