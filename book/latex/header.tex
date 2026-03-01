@@ -41,9 +41,14 @@
   {10pt}
   {\Huge}
 
-% Shaded code blocks (Pandoc uses the Shaded environment for highlighted blocks)
-\definecolor{shadecolor}{RGB}{245,245,245}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+% Shaded code blocks (Pandoc uses the Shaded environment for highlighted blocks).
+% Some Pandoc versions/templates already define this environment, so only define it if missing.
+\makeatletter
+\@ifundefined{Shaded}{%
+  \definecolor{shadecolor}{RGB}{245,245,245}%
+  \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}%
+}{}%
+\makeatother
 
 % Code blocks (Pandoc Highlighting environment)
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
