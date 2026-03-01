@@ -108,7 +108,14 @@ The repository is organized into **five root modules** to make it easier to navi
 ### Reliability Patterns
 
 - Double-Checked Locking — [`reliability-patterns/double-checked-locking/`](./reliability-patterns/double-checked-locking)
+- Circuit Breaker — [`reliability-patterns/circuit-breaker/`](./reliability-patterns/circuit-breaker)
 - Null Object — [`reliability-patterns/nullobject/`](./reliability-patterns/nullobject)
+- Rate Limiter — [`reliability-patterns/rate-limiter/`](./reliability-patterns/rate-limiter)
+- Retry with Backoff — [`reliability-patterns/retry-backoff/`](./reliability-patterns/retry-backoff)
+- Bulkhead — [`reliability-patterns/bulkhead/`](./reliability-patterns/bulkhead)
+- Hedge Requests — [`reliability-patterns/hedge-requests/`](./reliability-patterns/hedge-requests)
+- Timeout & Deadline Propagation — [`reliability-patterns/timeout-deadline-propagation/`](./reliability-patterns/timeout-deadline-propagation)
+- Idempotency Keys — [`reliability-patterns/idempotency-keys/`](./reliability-patterns/idempotency-keys)
 
 ### Miscellaneous Patterns
 

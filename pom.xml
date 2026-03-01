@@ -72,6 +72,13 @@
 		<!-- Reliability patterns -->
 		<module>reliability-patterns/double-checked-locking</module>
         <module>reliability-patterns/nullobject</module>
+        <module>reliability-patterns/circuit-breaker</module>
+        <module>reliability-patterns/rate-limiter</module>
+        <module>reliability-patterns/retry-backoff</module>
+        <module>reliability-patterns/bulkhead</module>
+        <module>reliability-patterns/hedge-requests</module>
+        <module>reliability-patterns/timeout-deadline-propagation</module>
+        <module>reliability-patterns/idempotency-keys</module>
 
 		<!-- Miscellaneous patterns -->
 		<module>miscellaneous-patterns/servant</module>

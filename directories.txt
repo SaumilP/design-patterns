@@ -26,7 +26,14 @@ architectural-patterns/service-locator
 architectural-patterns/state-machine
 enterprise-integration-patterns/pipes-and-filters
 reliability-patterns/double-checked-locking
+reliability-patterns/circuit-breaker
 reliability-patterns/nullobject
+reliability-patterns/rate-limiter
+reliability-patterns/retry-backoff
+reliability-patterns/bulkhead
+reliability-patterns/hedge-requests
+reliability-patterns/timeout-deadline-propagation
+reliability-patterns/idempotency-keys
 miscellaneous-patterns/filter
 miscellaneous-patterns/lazy-sequence
 miscellaneous-patterns/method-object

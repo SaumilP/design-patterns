@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650">
+  <defs>
+    <style type="text/css"><![CDATA[
+      .box { fill:#ffffff; stroke:#111827; stroke-width:2; rx:14; ry:14; }
+      .title { font-family: DejaVu Sans, Arial, sans-serif; font-size:22px; font-weight:700; fill:#111827; }
+      .text { font-family: DejaVu Sans, Arial, sans-serif; font-size:14px; fill:#111827; }
+      .muted { fill:#374151; }
+      .arrow { stroke:#111827; stroke-width:2; fill:none; marker-end:url(#arrowhead); }
+    ]]></style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#111827"/>
+    </marker>
+  </defs>
+
+  <rect x="60" y="70" width="520" height="380" class="box"/>
+  <text x="85" y="110" class="title">TokenBucketRateLimiter</text>
+  <line x1="60" y1="130" x2="580" y2="130" stroke="#111827" stroke-width="2"/>
+  <text x="85" y="165" class="text muted">+ tryAcquire()</text>
+  <text x="85" y="193" class="text muted">+ tryAcquire(timeout)</text>
+  <text x="85" y="221" class="text muted">+ execute(op, timeout)</text>
+
+  <rect x="650" y="70" width="400" height="210" class="box"/>
+  <text x="675" y="110" class="title">Builder</text>
+  <line x1="650" y1="130" x2="1050" y2="130" stroke="#111827" stroke-width="2"/>
+  <text x="675" y="160" class="text muted">Fluent configuration</text>
+  <text x="675" y="185" class="text muted">build() -> TokenBucketRateLimiter</text>
+
+  <path class="arrow" d="M 580 150 C 620 150, 610 150, 650 150"/>
+  <text x="590" y="145" class="text">creates</text>
+</svg>

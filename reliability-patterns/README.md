@@ -33,3 +33,10 @@ Avoid them when:
 
 - Double-Checked Locking — [`double-checked-locking/`](./double-checked-locking)
 - Null Object — [`nullobject/`](./nullobject)
+- Circuit Breaker — [`circuit-breaker/`](./circuit-breaker)
+- Rate Limiter — [`rate-limiter/`](./rate-limiter)
+- Retry with Backoff — [`retry-backoff/`](./retry-backoff)
+- Bulkhead — [`bulkhead/`](./bulkhead)
+- Hedge Requests — [`hedge-requests/`](./hedge-requests)
+- Timeout & Deadline Propagation — [`timeout-deadline-propagation/`](./timeout-deadline-propagation)
+- Idempotency Keys — [`idempotency-keys/`](./idempotency-keys)
