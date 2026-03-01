@@ -36,39 +36,48 @@
 	</properties>
 
 	<modules>
-		<module>abstract-factory</module>
-		<module>builder</module>
-        <module>singleton</module>
-        <module>adapter</module>
-        <module>bridge</module>
-        <module>command</module>
-        <module>mediator</module>
-        <module>visitor</module>
-        <module>strategy</module>
-        <module>factory-method</module>
-        <module>prototype</module>
-        <module>composite</module>
-        <module>decorator</module>
-        <module>facade</module>
-        <module>flyweight</module>
-        <module>proxy</module>
-        <module>chain</module>
-        <module>interpreter</module>
-        <module>iterator</module>
-        <module>model-view-presenter</module>
-        <module>observer</module>
-        <module>state</module>
-        <module>template-method</module>
-		<module>double-checked-locking</module>
-		<module>servant</module>
-		<module>service-locator</module>
-        <module>memento</module>
-        <module>nullobject</module>
-        <module>method-object</module>
-        <module>filter</module>
-        <module>state-machine</module>
-        <module>pipes-and-filters</module>
-        <module>lazy-sequence</module>
+		<!-- GoF patterns -->
+		<module>gof-patterns/abstract-factory</module>
+		<module>gof-patterns/builder</module>
+        <module>gof-patterns/singleton</module>
+        <module>gof-patterns/adapter</module>
+        <module>gof-patterns/bridge</module>
+        <module>gof-patterns/command</module>
+        <module>gof-patterns/mediator</module>
+        <module>gof-patterns/visitor</module>
+        <module>gof-patterns/strategy</module>
+        <module>gof-patterns/factory-method</module>
+        <module>gof-patterns/prototype</module>
+        <module>gof-patterns/composite</module>
+        <module>gof-patterns/decorator</module>
+        <module>gof-patterns/facade</module>
+        <module>gof-patterns/flyweight</module>
+        <module>gof-patterns/proxy</module>
+        <module>gof-patterns/chain</module>
+        <module>gof-patterns/interpreter</module>
+        <module>gof-patterns/iterator</module>
+        <module>gof-patterns/observer</module>
+        <module>gof-patterns/state</module>
+        <module>gof-patterns/template-method</module>
+        <module>gof-patterns/memento</module>
+
+		<!-- Architectural patterns -->
+        <module>architectural-patterns/model-view-presenter</module>
+		<module>architectural-patterns/service-locator</module>
+        <module>architectural-patterns/state-machine</module>
+
+		<!-- Enterprise integration patterns -->
+        <module>enterprise-integration-patterns/pipes-and-filters</module>
+
+		<!-- Reliability patterns -->
+		<module>reliability-patterns/double-checked-locking</module>
+        <module>reliability-patterns/nullobject</module>
+
+		<!-- Miscellaneous patterns -->
+		<module>miscellaneous-patterns/servant</module>
+        <module>miscellaneous-patterns/method-object</module>
+        <module>miscellaneous-patterns/filter</module>
+        <module>miscellaneous-patterns/lazy-sequence</module>
     </modules>
 
     <developers>

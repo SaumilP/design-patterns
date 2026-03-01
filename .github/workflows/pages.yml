@@ -16,17 +16,63 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Install Pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
+      - name: Install Pandoc + Chromium deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pandoc \
+            librsvg2-bin \
+            libgbm1 \
+            libnss3 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxrandr2 \
+            libxss1 \
+            libxtst6 \
+            fonts-liberation \
+            ca-certificates \
+            lsb-release \
+            xdg-utils
+          sudo apt-get install -y libasound2 || sudo apt-get install -y libasound2t64
 
       - name: Verify rsvg-convert
         run: |
           command -v rsvg-convert && rsvg-convert --version || echo "rsvg-convert not found"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Mermaid CLI
+        run: |
+          npm install -g @mermaid-js/mermaid-cli
+
+      - name: Mermaid smoke test (Chromium/Puppeteer)
+        run: |
+          mkdir -p book-output/diagrams
+          cat > book-output/diagrams/smoke.mmd <<'MMD'
+          sequenceDiagram
+              participant A
+              participant B
+              A->>B: hello
+          MMD
+          cat > book-output/diagrams/puppeteer-smoke.json <<'JSON'
+          { "args": ["--no-sandbox", "--disable-setuid-sandbox"] }
+          JSON
+          mmdc \
+            -i book-output/diagrams/smoke.mmd \
+            -o book-output/diagrams/smoke.png \
+            --backgroundColor "#ffffff" \
+            --puppeteerConfigFile book-output/diagrams/puppeteer-smoke.json
 
       - name: Generate master markdown
         run: |
@@ -43,19 +89,44 @@ jobs:
             echo "" >> book-output/design-patterns-book.md
           fi
 
-          for pattern in $(ls -d */ | grep -v "^\." | sort | sed 's/\///'); do
-            if [ -f "$pattern/README.md" ]; then
+          categories=( \
+            gof-patterns \
+            enterprise-integration-patterns \
+            reliability-patterns \
+            architectural-patterns \
+            miscellaneous-patterns \
+          )
+
+          for category in "${categories[@]}"; do
+            if [ -f "$category/README.md" ]; then
               echo "---" >> book-output/design-patterns-book.md
               echo "" >> book-output/design-patterns-book.md
-              cat "$pattern/README.md" >> book-output/design-patterns-book.md
+              cat "$category/README.md" >> book-output/design-patterns-book.md
               echo "" >> book-output/design-patterns-book.md
             fi
+
+            for pattern_dir in $(ls -d "$category"/*/ 2>/dev/null | sort); do
+              if [ -f "$pattern_dir/README.md" ]; then
+                echo "---" >> book-output/design-patterns-book.md
+                echo "" >> book-output/design-patterns-book.md
+                cat "$pattern_dir/README.md" >> book-output/design-patterns-book.md
+                echo "" >> book-output/design-patterns-book.md
+              fi
+            done
           done
+
+      - name: Render Mermaid diagrams
+        run: |
+          mkdir -p book-output/diagrams
+          python3 scripts/render_mermaid.py \
+            book-output/design-patterns-book.md \
+            book-output/design-patterns-book.with-diagrams.md \
+            book-output/diagrams
 
       - name: Build HTML
         run: |
           mkdir -p book-output/html
-          pandoc book-output/design-patterns-book.md \
+          pandoc book-output/design-patterns-book.with-diagrams.md \
             -o book-output/html/index.html \
             --standalone \
             --css=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css \

@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -27,7 +27,6 @@ jobs:
             librsvg2-bin \
             libgbm1 \
             libnss3 \
-            libasound2 \
             libatk1.0-0 \
             libatk-bridge2.0-0 \
             libcups2 \
@@ -41,6 +40,7 @@ jobs:
             lsb-release \
             xdg-utils \
             zip
+          sudo apt-get install -y libasound2 || sudo apt-get install -y libasound2t64
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -97,13 +97,30 @@ jobs:
             echo "" >> book-output/design-patterns-book.md
           fi
 
-          for pattern in $(ls -d */ | grep -v "^\." | sort | sed 's/\///'); do
-            if [ -f "$pattern/README.md" ]; then
+          categories=( \
+            gof-patterns \
+            enterprise-integration-patterns \
+            reliability-patterns \
+            architectural-patterns \
+            miscellaneous-patterns \
+          )
+
+          for category in "${categories[@]}"; do
+            if [ -f "$category/README.md" ]; then
               echo "---" >> book-output/design-patterns-book.md
               echo "" >> book-output/design-patterns-book.md
-              cat "$pattern/README.md" >> book-output/design-patterns-book.md
+              cat "$category/README.md" >> book-output/design-patterns-book.md
               echo "" >> book-output/design-patterns-book.md
             fi
+
+            for pattern_dir in $(ls -d "$category"/*/ 2>/dev/null | sort); do
+              if [ -f "$pattern_dir/README.md" ]; then
+                echo "---" >> book-output/design-patterns-book.md
+                echo "" >> book-output/design-patterns-book.md
+                cat "$pattern_dir/README.md" >> book-output/design-patterns-book.md
+                echo "" >> book-output/design-patterns-book.md
+              fi
+            done
           done
 
       - name: Render Mermaid diagrams
