@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -56,7 +57,27 @@ jobs:
             npm install -g @mermaid-js/mermaid-cli
           fi
           mmdc --version || true
-      
+
+      - name: Mermaid smoke test (Chromium/Puppeteer)
+        id: mermaid_smoke
+        continue-on-error: true
+        run: |
+          mkdir -p book-output/diagrams
+          cat > book-output/diagrams/smoke.mmd <<'MMD'
+          sequenceDiagram
+              participant A
+              participant B
+              A->>B: hello
+          MMD
+          cat > book-output/diagrams/puppeteer-smoke.json <<'JSON'
+          { "args": ["--no-sandbox", "--disable-setuid-sandbox"] }
+          JSON
+          mmdc \
+            -i book-output/diagrams/smoke.mmd \
+            -o book-output/diagrams/smoke.png \
+            --backgroundColor "#ffffff" \
+            --puppeteerConfigFile book-output/diagrams/puppeteer-smoke.json
+
       - name: Verify rsvg-convert
         run: |
           command -v rsvg-convert && rsvg-convert --version || echo "rsvg-convert not found"
@@ -86,6 +107,9 @@ jobs:
           done
 
       - name: Render Mermaid diagrams
+        if: ${{ steps.mermaid_smoke.outcome == 'success' }}
+        id: render_mermaid
+        continue-on-error: true
         run: |
           mkdir -p book-output/diagrams
           python3 scripts/render_mermaid.py \
@@ -94,6 +118,9 @@ jobs:
             book-output/diagrams
 
       - name: Build HTML
+        if: ${{ steps.render_mermaid.outcome == 'success' }}
+        id: build_html
+        continue-on-error: true
         run: |
           mkdir -p book-output/html
           pandoc book-output/design-patterns-book.with-diagrams.md \
@@ -106,6 +133,7 @@ jobs:
             --highlight-style=pygments
 
       - name: Sanitize markdown for LaTeX PDF
+        if: ${{ steps.render_mermaid.outcome == 'success' }}
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -124,12 +152,15 @@ jobs:
           PY
 
       - name: Debug LaTeX output (if PDF fails)
-        if: failure()
+        if: ${{ steps.build_pdf.outcome == 'failure' }}
         run: |
           pandoc --from=gfm book-output/design-patterns-book.with-diagrams.md -t latex -o book-output/debug.tex || true
           nl -ba book-output/debug.tex | sed -n '470,520p' || true
 
       - name: Build PDF
+        if: ${{ steps.render_mermaid.outcome == 'success' }}
+        id: build_pdf
+        continue-on-error: true
         run: |
           mkdir -p book-output/pdf
           pandoc --from=gfm book-output/design-patterns-book.with-diagrams.md \
@@ -143,15 +174,48 @@ jobs:
             -V documentclass=article
 
       - name: Package HTML site
+        if: ${{ steps.build_html.outcome == 'success' }}
         run: |
           cd book-output/html
           zip -r ../design-patterns-html.zip .
           cd ..
 
+      - name: Upload workflow artifacts (manual runs)
+        if: ${{ github.event_name == 'workflow_dispatch' && steps.mermaid_smoke.outcome == 'success' && steps.render_mermaid.outcome == 'success' && steps.build_html.outcome == 'success' && steps.build_pdf.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-patterns-book
+          path: |
+            book-output/pdf/design-patterns-book.pdf
+            book-output/design-patterns-html.zip
+            book-output/design-patterns-book.md
+
+      - name: Upload debug artifacts (on failure)
+        if: ${{ steps.mermaid_smoke.outcome == 'failure' || steps.render_mermaid.outcome == 'failure' || steps.build_html.outcome == 'failure' || steps.build_pdf.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-patterns-book-debug
+          if-no-files-found: ignore
+          path: |
+            book-output/debug.tex
+            book-output/design-patterns-book.with-diagrams.md
+            book-output/diagrams
+
       - name: Create GitHub Release and upload assets
+        if: ${{ startsWith(github.ref, 'refs/tags/') && steps.mermaid_smoke.outcome == 'success' && steps.render_mermaid.outcome == 'success' && steps.build_html.outcome == 'success' && steps.build_pdf.outcome == 'success' }}
         uses: softprops/action-gh-release@v2
         with:
           files: |
             book-output/design-patterns-book.md
             book-output/pdf/design-patterns-book.pdf
             book-output/design-patterns-html.zip
+
+      - name: Fail job if book build failed
+        if: ${{ steps.mermaid_smoke.outcome == 'failure' || steps.render_mermaid.outcome == 'failure' || steps.build_html.outcome == 'failure' || steps.build_pdf.outcome == 'failure' }}
+        run: |
+          echo "Book build failed:"
+          echo "  Mermaid smoke:  ${{ steps.mermaid_smoke.outcome }}"
+          echo "  Render Mermaid: ${{ steps.render_mermaid.outcome }}"
+          echo "  Build HTML:     ${{ steps.build_html.outcome }}"
+          echo "  Build PDF:      ${{ steps.build_pdf.outcome }}"
+          exit 1
