@@ -153,7 +153,7 @@ jobs:
             -o book-output/html/index.html \
             --standalone \
             --css=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css \
-            --resource-path=book-output \
+            --resource-path=.:book-output \
             --table-of-contents \
             --toc-depth=3 \
             --number-sections \
@@ -190,7 +190,7 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p book-output/pdf
-          pandoc --from=gfm --resource-path=book-output --top-level-division=chapter \
+          pandoc --from=gfm --resource-path=.:book-output --top-level-division=chapter \
             --template=book/latex/template.tex \
             --include-in-header=book/latex/header.tex \
             book-output/design-patterns-book.with-diagrams.md \

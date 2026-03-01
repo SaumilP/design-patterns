@@ -139,7 +139,7 @@ jobs:
             -o book-output/html/index.html \
             --standalone \
             --css=https://cdn.jsdelivr.net/npm/water.css@2/out/water.css \
-            --resource-path=book-output \
+            --resource-path=.:book-output \
             --table-of-contents \
             --toc-depth=3 \
             --number-sections \
