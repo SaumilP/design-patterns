@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="70" x2="1130" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7dd3fc" />
+      <stop offset="1" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="panel" x1="190" y1="120" x2="890" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eff6ff" />
+      <stop offset="1" stop-color="#ffffff" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="42" fill="#0f172a" />
+  <rect x="28" y="28" width="1144" height="574" rx="34" fill="url(#bg)" />
+  <g opacity=".24">
+    <path d="M40 124H1160" stroke="white" />
+    <path d="M40 248H1160" stroke="white" />
+    <path d="M40 372H1160" stroke="white" />
+    <path d="M40 496H1160" stroke="white" />
+  </g>
+  <circle cx="706" cy="127" r="22" fill="#0284c7" opacity="0.14" /><circle cx="760" cy="143" r="25" fill="#0284c7" opacity="0.20" /><circle cx="768" cy="58" r="18" fill="#0284c7" opacity="0.13" /><circle cx="243" cy="59" r="45" fill="#0284c7" opacity="0.22" /><circle cx="262" cy="188" r="24" fill="#0284c7" opacity="0.13" />
+  <rect x="96" y="104" width="1008" height="422" rx="34" fill="url(#panel)" opacity=".95" />
+  <rect x="140" y="148" width="144" height="42" rx="21" fill="#0c4a6e" opacity=".12" />
+  <text x="164" y="176" fill="#0c4a6e" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700">ENTERPRISE-INTEGRATION</text>
+  <text x="140" y="280" fill="#0c4a6e" font-family="Space Grotesk, Arial, sans-serif" font-size="72" font-weight="700">CQRS Pattern (Command Query Responsibility Segregation)</text>
+  <text x="140" y="330" fill="#0284c7" font-family="JetBrains Mono, monospace" font-size="26" font-weight="600">enterprise-integration • overview</text>
+  <rect x="110" y="165" width="135" height="16" rx="8" fill="#0c4a6e" opacity="0.18" /><rect x="275" y="179" width="120" height="16" rx="8" fill="#0c4a6e" opacity="0.26" /><rect x="440" y="150" width="125" height="16" rx="8" fill="#0c4a6e" opacity="0.34" /><rect x="605" y="151" width="123" height="16" rx="8" fill="#0c4a6e" opacity="0.42" />
+  <g transform="translate(885 170)">
+    <rect width="140" height="140" rx="34" fill="#0c4a6e" opacity=".10" />
+    <path d="M70 18 114 44v52l-44 26-44-26V44l44-26Z" fill="#0284c7" opacity=".92" />
+    <path d="M47 54h31c13 0 22 7 22 17s-9 17-22 17H47V54Z" fill="white" />
+  </g>
+</svg>

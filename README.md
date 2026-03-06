@@ -1,6 +1,6 @@
 ![CI](https://github.com/SaumilP/design-patterns/actions/workflows/ci.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Java](https://img.shields.io/badge/Java-11%2B-orange)
+![Java](https://img.shields.io/badge/Java-21%2B-orange)
 [![Pages](https://img.shields.io/badge/Github-Pages-green)](https://saumilp.github.io/design-patterns)
 ![GitHub Repo stars](https://img.shields.io/github/stars/saumilp/design-patterns)
 

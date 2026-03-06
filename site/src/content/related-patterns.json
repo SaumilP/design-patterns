@@ -1,0 +1,260 @@
+{
+  "abstract-factory": [
+    "factory-method",
+    "prototype",
+    "builder",
+    "singleton"
+  ],
+  "adapter": [
+    "bridge",
+    "composite",
+    "decorator",
+    "facade"
+  ],
+  "bridge": [
+    "adapter",
+    "composite",
+    "decorator",
+    "facade"
+  ],
+  "builder": [
+    "singleton",
+    "abstract-factory",
+    "factory-method",
+    "prototype"
+  ],
+  "chain": [
+    "abstract-factory",
+    "factory-method",
+    "adapter",
+    "bridge"
+  ],
+  "command": [
+    "strategy",
+    "chain",
+    "observer",
+    "state"
+  ],
+  "composite": [
+    "adapter",
+    "bridge",
+    "decorator",
+    "facade"
+  ],
+  "decorator": [
+    "adapter",
+    "bridge",
+    "composite",
+    "facade"
+  ],
+  "facade": [
+    "adapter",
+    "bridge",
+    "composite",
+    "decorator"
+  ],
+  "factory-method": [
+    "abstract-factory",
+    "builder",
+    "singleton",
+    "prototype"
+  ],
+  "flyweight": [
+    "adapter",
+    "bridge",
+    "composite",
+    "decorator"
+  ],
+  "interpreter": [
+    "mediator",
+    "iterator",
+    "memento",
+    "visitor"
+  ],
+  "iterator": [
+    "visitor",
+    "interpreter",
+    "memento",
+    "mediator"
+  ],
+  "mediator": [
+    "interpreter",
+    "visitor",
+    "memento",
+    "observer"
+  ],
+  "memento": [
+    "mediator",
+    "visitor",
+    "interpreter",
+    "iterator"
+  ],
+  "observer": [
+    "state",
+    "strategy",
+    "mediator",
+    "command"
+  ],
+  "prototype": [
+    "adapter",
+    "bridge",
+    "composite",
+    "decorator"
+  ],
+  "proxy": [
+    "adapter",
+    "bridge",
+    "composite",
+    "decorator"
+  ],
+  "singleton": [
+    "builder",
+    "factory-method",
+    "abstract-factory",
+    "prototype"
+  ],
+  "state": [
+    "observer",
+    "command",
+    "template-method",
+    "chain"
+  ],
+  "strategy": [
+    "command",
+    "observer",
+    "template-method",
+    "mediator"
+  ],
+  "template-method": [
+    "observer",
+    "state",
+    "strategy",
+    "chain"
+  ],
+  "visitor": [
+    "mediator",
+    "iterator",
+    "memento",
+    "interpreter"
+  ],
+  "model-view-presenter": [
+    "state-machine",
+    "service-locator",
+    "mediator",
+    "interpreter"
+  ],
+  "service-locator": [
+    "model-view-presenter",
+    "state-machine",
+    "singleton",
+    "abstract-factory"
+  ],
+  "state-machine": [
+    "model-view-presenter",
+    "service-locator",
+    "filter",
+    "mediator"
+  ],
+  "cqrs": [
+    "transactional-outbox",
+    "saga",
+    "pipes-and-filters",
+    "rate-limiter"
+  ],
+  "pipes-and-filters": [
+    "command",
+    "interpreter",
+    "mediator",
+    "memento"
+  ],
+  "saga": [
+    "transactional-outbox",
+    "cqrs",
+    "pipes-and-filters",
+    "rate-limiter"
+  ],
+  "transactional-outbox": [
+    "saga",
+    "cqrs",
+    "pipes-and-filters",
+    "observer"
+  ],
+  "bulkhead": [
+    "rate-limiter",
+    "circuit-breaker",
+    "retry-backoff",
+    "hedge-requests"
+  ],
+  "circuit-breaker": [
+    "rate-limiter",
+    "bulkhead",
+    "builder",
+    "abstract-factory"
+  ],
+  "double-checked-locking": [
+    "nullobject",
+    "circuit-breaker",
+    "interpreter",
+    "mediator"
+  ],
+  "hedge-requests": [
+    "bulkhead",
+    "rate-limiter",
+    "retry-backoff",
+    "cqrs"
+  ],
+  "idempotency-keys": [
+    "hedge-requests",
+    "retry-backoff",
+    "timeout-deadline-propagation",
+    "rate-limiter"
+  ],
+  "nullobject": [
+    "interpreter",
+    "iterator",
+    "filter",
+    "servant"
+  ],
+  "rate-limiter": [
+    "circuit-breaker",
+    "bulkhead",
+    "nullobject",
+    "saga"
+  ],
+  "retry-backoff": [
+    "bulkhead",
+    "circuit-breaker",
+    "timeout-deadline-propagation",
+    "hedge-requests"
+  ],
+  "timeout-deadline-propagation": [
+    "bulkhead",
+    "rate-limiter",
+    "hedge-requests",
+    "idempotency-keys"
+  ],
+  "filter": [
+    "lazy-sequence",
+    "servant",
+    "state-machine",
+    "iterator"
+  ],
+  "lazy-sequence": [
+    "servant",
+    "filter",
+    "interpreter",
+    "iterator"
+  ],
+  "method-object": [
+    "filter",
+    "lazy-sequence",
+    "servant",
+    "command"
+  ],
+  "servant": [
+    "lazy-sequence",
+    "filter",
+    "interpreter",
+    "mediator"
+  ]
+}

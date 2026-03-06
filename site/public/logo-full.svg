@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 160" fill="none">
+  <rect width="160" height="160" rx="34" fill="#08111f"/>
+  <path d="M80 18 130 47v66l-50 29-50-29V47l50-29Z" fill="url(#g)"/>
+  <path d="M52 63h35c15 0 24 8 24 18s-9 18-24 18H52V63Z" fill="#F8FBFF"/>
+  <path d="M208 56h124" stroke="#334155" stroke-width="2"/>
+  <circle cx="208" cy="56" r="6" fill="#22d3ee"/>
+  <circle cx="332" cy="56" r="6" fill="#10b981"/>
+  <text x="208" y="92" fill="#E2E8F0" font-family="Space Grotesk, Arial, sans-serif" font-size="36" font-weight="700">Pattern Hex</text>
+  <text x="208" y="121" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="16">practical java design patterns</text>
+  <defs>
+    <linearGradient id="g" x1="35" y1="24" x2="130" y2="136" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset=".48" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+</svg>

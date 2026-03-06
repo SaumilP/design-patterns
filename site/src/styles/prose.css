@@ -1,0 +1,142 @@
+.prose-shell {
+  color: var(--prose-text);
+}
+
+.prose-shell h1,
+.prose-shell h2,
+.prose-shell h3,
+.prose-shell h4 {
+  color: var(--prose-heading);
+  font-family: "Space Grotesk", ui-sans-serif, system-ui;
+  line-height: 1.1;
+}
+
+.prose-shell h2 {
+  margin-top: 2.5rem;
+  font-size: 1.9rem;
+}
+
+.prose-shell h3 {
+  margin-top: 1.75rem;
+  font-size: 1.3rem;
+}
+
+.prose-shell p,
+.prose-shell li {
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.prose-shell a {
+  color: var(--prose-link);
+}
+
+.prose-shell pre {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid var(--prose-pre-border);
+  background: var(--prose-pre-bg);
+  padding: 0;
+}
+
+.prose-shell code {
+  border-radius: 0.45rem;
+  background: var(--prose-inline-code-bg);
+  padding: 0.15rem 0.4rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9em;
+}
+
+.prose-shell pre code {
+  display: block;
+  padding: 1rem 1.1rem 1.1rem;
+  background: transparent;
+}
+
+.prose-shell .code-block__label {
+  border-bottom: 1px solid var(--prose-pre-border);
+  background: var(--prose-label-bg);
+  padding: 0.7rem 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--prose-label-text);
+}
+
+.prose-shell .hljs {
+  color: var(--prose-text);
+  background: transparent;
+}
+
+.prose-shell .hljs-keyword,
+.prose-shell .hljs-selector-tag,
+.prose-shell .hljs-literal,
+.prose-shell .hljs-title.class_,
+.prose-shell .hljs-type {
+  color: var(--hljs-keyword);
+}
+
+.prose-shell .hljs-string,
+.prose-shell .hljs-attr,
+.prose-shell .hljs-symbol,
+.prose-shell .hljs-bullet {
+  color: var(--hljs-string);
+}
+
+.prose-shell .hljs-number,
+.prose-shell .hljs-title.function_,
+.prose-shell .hljs-built_in {
+  color: var(--hljs-number);
+}
+
+.prose-shell .hljs-comment,
+.prose-shell .hljs-quote {
+  color: var(--hljs-comment);
+}
+
+.prose-shell .hljs-variable,
+.prose-shell .hljs-template-variable,
+.prose-shell .hljs-params {
+  color: var(--hljs-variable);
+}
+
+.prose-shell .hljs-meta,
+.prose-shell .hljs-doctag {
+  color: var(--hljs-meta);
+}
+
+.prose-shell .mermaid {
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid var(--prose-pre-border);
+  background: var(--prose-mermaid-bg);
+  padding: 0.85rem;
+}
+
+.prose-shell .mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose-shell blockquote {
+  margin: 1.5rem 0;
+  border-left: 4px solid #22d3ee;
+  padding-left: 1rem;
+  color: var(--prose-blockquote);
+}
+
+.prose-shell table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose-shell th,
+.prose-shell td {
+  border: 1px solid var(--prose-pre-border);
+  padding: 0.75rem;
+  text-align: left;
+}
