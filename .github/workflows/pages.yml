@@ -2,6 +2,11 @@ name: Deploy modern site to GitHub Pages
 
 on:
   workflow_dispatch:
+    inputs:
+      reason:
+        description: "Optional note for this deploy"
+        required: false
+        type: string
 
 permissions:
   contents: read
