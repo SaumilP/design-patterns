@@ -6,10 +6,11 @@ import { Button } from "../common/Button";
 interface HeaderProps {
   onOpenSearch: () => void;
   theme: "dark" | "light";
+  themeMode: "auto" | "dark" | "light";
   onToggleTheme: () => void;
 }
 
-export function Header({ onOpenSearch, theme, onToggleTheme }: HeaderProps) {
+export function Header({ onOpenSearch, theme, themeMode, onToggleTheme }: HeaderProps) {
   const [isCompact, setIsCompact] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -32,7 +33,7 @@ export function Header({ onOpenSearch, theme, onToggleTheme }: HeaderProps) {
     <header className={`theme-header sticky top-0 z-40 border-b backdrop-blur-xl transition ${isCompact ? "shadow-2xl" : ""}`}>
       <div className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 transition-all md:px-6 ${isCompact ? "py-3" : "py-4"}`}>
         <Link to="/" className="flex items-center gap-3">
-          <img src={`${import.meta.env.BASE_URL}logo-icon.svg`} alt="" className="h-11 w-11" />
+          <img src={`${import.meta.env.BASE_URL}logo-mark.svg`} alt="Pattern Hex logo" className="h-11 w-11" />
           <div>
             <div className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Pattern Hex</div>
             <div className="theme-text-muted text-xs">Practical Java Design Patterns</div>
@@ -64,9 +65,9 @@ export function Header({ onOpenSearch, theme, onToggleTheme }: HeaderProps) {
             type="button"
             onClick={onToggleTheme}
             className="theme-panel-soft theme-text-secondary rounded-full border px-4 py-2 text-sm font-medium transition hover:bg-[var(--panel)]"
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label={`Theme: ${themeMode}`}
           >
-            {theme === "dark" ? "Light mode" : "Dark mode"}
+            Theme: {themeMode === "auto" ? `Auto (${theme})` : themeMode}
           </button>
           <a href={repositoryUrl} target="_blank" rel="noreferrer" className="theme-text-muted text-sm font-medium hover:text-[var(--text-primary)]">
             GitHub
@@ -114,7 +115,7 @@ export function Header({ onOpenSearch, theme, onToggleTheme }: HeaderProps) {
               onClick={onToggleTheme}
               className="theme-panel-soft theme-text-primary rounded-2xl border px-4 py-3 text-left text-sm font-medium"
             >
-              {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              Theme: {themeMode === "auto" ? `Auto (${theme})` : themeMode}
             </button>
             <Button href={repositoryUrl} target="_blank" rel="noreferrer">
               Star on GitHub

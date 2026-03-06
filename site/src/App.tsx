@@ -12,6 +12,8 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { PatternPage } from "./pages/PatternPage";
 import type { PatternCategory, PatternRecord, RelatedPatternMap } from "./types/pattern";
 
+type ThemeMode = "auto" | "dark" | "light";
+
 function useRecentSearches() {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
@@ -147,22 +149,51 @@ export default function App() {
   const [relatedPatterns, setRelatedPatterns] = useState<RelatedPatternMap>({});
   const [isLoading, setIsLoading] = useState(true);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [themeMode, setThemeMode] = useState<ThemeMode>("auto");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const { recentSearches, remember } = useRecentSearches();
 
   useEffect(() => {
     const stored = window.localStorage.getItem("pattern-theme");
-    if (stored === "dark" || stored === "light") {
-      setTheme(stored);
-    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-      setTheme("light");
+    if (stored === "dark" || stored === "light" || stored === "auto") {
+      setThemeMode(stored);
+    } else {
+      setThemeMode("auto");
     }
   }, []);
 
   useEffect(() => {
+    const query = window.matchMedia("(prefers-color-scheme: light)");
+
+    const compute = () => {
+      if (themeMode === "auto") {
+        setTheme(query.matches ? "light" : "dark");
+      } else {
+        setTheme(themeMode);
+      }
+    };
+
+    compute();
+
+    if (themeMode !== "auto") {
+      return;
+    }
+
+    const onChange = () => compute();
+    if ("addEventListener" in query) {
+      query.addEventListener("change", onChange);
+      return () => query.removeEventListener("change", onChange);
+    }
+
+    // Safari < 14
+    query.addListener(onChange);
+    return () => query.removeListener(onChange);
+  }, [themeMode]);
+
+  useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem("pattern-theme", theme);
-  }, [theme]);
+    window.localStorage.setItem("pattern-theme", themeMode);
+  }, [theme, themeMode]);
 
   useEffect(() => {
     let active = true;
@@ -208,7 +239,10 @@ export default function App() {
     <AppShell
       onOpenSearch={() => setPaletteOpen(true)}
       theme={theme}
-      onToggleTheme={() => setTheme((value) => (value === "dark" ? "light" : "dark"))}
+      themeMode={themeMode}
+      onToggleTheme={() =>
+        setThemeMode((value) => (value === "auto" ? "dark" : value === "dark" ? "light" : "auto"))
+      }
     >
       <SearchCommandPalette
         isOpen={paletteOpen}

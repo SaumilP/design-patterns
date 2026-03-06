@@ -66,7 +66,8 @@ export function PatternPage(props: { pattern: PatternRecord; related: PatternRec
             const next = cursor.nextElementSibling as HTMLElement | null;
             if ((title.startsWith("advantages") || title.startsWith("disadvantages")) && next && /^(UL|OL)$/i.test(next.tagName)) {
               columns.push({ title: cursor.textContent?.trim() ?? "", list: next });
-              removable.push(cursor, next);
+              // We move the list into the new layout, so only remove the subsection heading.
+              removable.push(cursor);
             }
           }
 

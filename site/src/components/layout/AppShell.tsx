@@ -6,10 +6,11 @@ interface AppShellProps {
   children: ReactNode;
   onOpenSearch: () => void;
   theme: "dark" | "light";
+  themeMode: "auto" | "dark" | "light";
   onToggleTheme: () => void;
 }
 
-export function AppShell({ children, onOpenSearch, theme, onToggleTheme }: AppShellProps) {
+export function AppShell({ children, onOpenSearch, theme, themeMode, onToggleTheme }: AppShellProps) {
   return (
     <div className="theme-shell min-h-screen">
       <a
@@ -19,7 +20,7 @@ export function AppShell({ children, onOpenSearch, theme, onToggleTheme }: AppSh
         Skip to content
       </a>
       <div className="theme-grid fixed inset-0 -z-10 bg-[size:52px_52px] opacity-25" />
-      <Header onOpenSearch={onOpenSearch} theme={theme} onToggleTheme={onToggleTheme} />
+      <Header onOpenSearch={onOpenSearch} theme={theme} themeMode={themeMode} onToggleTheme={onToggleTheme} />
       <main id="main-content">{children}</main>
       <Footer />
     </div>
