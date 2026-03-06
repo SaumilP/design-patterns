@@ -9,19 +9,5 @@
       <stop offset=".5" stop-color="#4f46e5"/>
       <stop offset="1" stop-color="#10b981"/>
     </linearGradient>
-  </defs>
-</svg>
-*** Add File: site/public/logo-icon.svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
-  <rect width="160" height="160" rx="36" fill="#08111f"/>
-  <path d="M80 18 130 47v66l-50 29-50-29V47l50-29Z" fill="url(#g)"/>
-  <path d="M52 63h35c15 0 24 8 24 18s-9 18-24 18H52V63Z" fill="#F8FBFF"/>
-  <path d="M34 51 80 25l46 26" stroke="rgba(255,255,255,.12)" stroke-width="3"/>
-  <defs>
-    <linearGradient id="g" x1="35" y1="24" x2="130" y2="136" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#22d3ee"/>
-      <stop offset=".48" stop-color="#4f46e5"/>
-      <stop offset="1" stop-color="#10b981"/>
-    </linearGradient>
-  </defs>
+</defs>
 </svg>
