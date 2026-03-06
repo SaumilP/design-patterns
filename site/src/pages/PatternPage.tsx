@@ -305,43 +305,6 @@ export function PatternPage(props: { pattern: PatternRecord; related: PatternRec
               </div>
             ) : null}
 
-            {(pattern.advantages?.length || pattern.disadvantages?.length) ? (
-              <div>
-                <div className="theme-text-primary font-semibold">Trade-offs</div>
-                <div className="mt-3 grid gap-4 sm:grid-cols-2">
-                  <div className="theme-panel-soft rounded-2xl border p-4">
-                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-emerald-300">
-                      Advantages
-                    </div>
-                    <ul className="theme-text-secondary list-disc space-y-2 pl-5">
-                      {(pattern.advantages ?? []).map((item) => (
-                        <li key={item}>{ensureSentencePunctuation(item)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="theme-panel-soft rounded-2xl border p-4">
-                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-rose-300">
-                      Disadvantages
-                    </div>
-                    <ul className="theme-text-secondary list-disc space-y-2 pl-5">
-                      {(pattern.disadvantages ?? []).map((item) => (
-                        <li key={item}>{ensureSentencePunctuation(item)}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ) : pattern.tradeOffs?.length ? (
-              <div>
-                <div className="theme-text-primary font-semibold">Trade-offs</div>
-                <ul className="theme-text-secondary mt-2 list-disc space-y-2 pl-5">
-                  {pattern.tradeOffs.map((item) => (
-                    <li key={item}>{ensureSentencePunctuation(item)}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-
             {pattern.alternatives?.length ? (
               <div>
                 <div className="theme-text-primary font-semibold">Alternatives</div>

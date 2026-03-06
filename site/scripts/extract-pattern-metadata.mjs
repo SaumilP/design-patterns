@@ -150,9 +150,9 @@ function inferAliases(folderName, name, frontmatterAliases) {
 }
 
 function extractIntentProblemApplicability(content) {
-  const intent = stripMarkdown(
-    sectionContent(content, ["Intent", "When to use", "Overview"]),
-  ).slice(0, 420);
+  const intentSection = sectionContent(content, ["Intent"]);
+  const fallbackIntentSection = sectionContent(content, ["When to use", "Use When", "Overview"]);
+  const intent = stripMarkdown(intentSection || fallbackIntentSection).slice(0, 420);
   const problemSection = sectionContent(content, ["Problem", "Problem Solved"]);
   const applicabilitySection = sectionContent(content, [
     "Applicability",

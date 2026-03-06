@@ -1,9 +1,9 @@
 {
   "abstract-factory": [
     "factory-method",
-    "prototype",
     "builder",
-    "singleton"
+    "prototype",
+    "chain"
   ],
   "adapter": [
     "bridge",
@@ -19,21 +19,21 @@
   ],
   "builder": [
     "singleton",
-    "abstract-factory",
     "factory-method",
-    "prototype"
+    "abstract-factory",
+    "chain"
   ],
   "chain": [
-    "abstract-factory",
     "factory-method",
-    "adapter",
-    "bridge"
+    "abstract-factory",
+    "observer",
+    "builder"
   ],
   "command": [
+    "observer",
     "strategy",
     "chain",
-    "observer",
-    "state"
+    "mediator"
   ],
   "composite": [
     "adapter",
@@ -56,8 +56,8 @@
   "factory-method": [
     "abstract-factory",
     "builder",
-    "singleton",
-    "prototype"
+    "chain",
+    "singleton"
   ],
   "flyweight": [
     "adapter",
@@ -72,28 +72,28 @@
     "visitor"
   ],
   "iterator": [
+    "memento",
     "visitor",
     "interpreter",
-    "memento",
     "mediator"
   ],
   "mediator": [
-    "interpreter",
     "visitor",
-    "memento",
-    "observer"
+    "observer",
+    "interpreter",
+    "memento"
   ],
   "memento": [
-    "mediator",
+    "iterator",
     "visitor",
-    "interpreter",
-    "iterator"
+    "mediator",
+    "command"
   ],
   "observer": [
     "state",
-    "strategy",
     "mediator",
-    "command"
+    "strategy",
+    "chain"
   ],
   "prototype": [
     "adapter",
@@ -109,26 +109,26 @@
   ],
   "singleton": [
     "builder",
-    "factory-method",
     "abstract-factory",
+    "factory-method",
     "prototype"
   ],
   "state": [
     "observer",
-    "command",
-    "template-method",
-    "chain"
+    "chain",
+    "strategy",
+    "command"
   ],
   "strategy": [
     "command",
     "observer",
-    "template-method",
-    "mediator"
+    "state",
+    "template-method"
   ],
   "template-method": [
+    "strategy",
     "observer",
     "state",
-    "strategy",
     "chain"
   ],
   "visitor": [
@@ -141,13 +141,13 @@
     "state-machine",
     "service-locator",
     "mediator",
-    "interpreter"
+    "servant"
   ],
   "service-locator": [
     "model-view-presenter",
     "state-machine",
     "singleton",
-    "abstract-factory"
+    "factory-method"
   ],
   "state-machine": [
     "model-view-presenter",
@@ -159,19 +159,19 @@
     "transactional-outbox",
     "saga",
     "pipes-and-filters",
-    "rate-limiter"
+    "observer"
   ],
   "pipes-and-filters": [
-    "command",
-    "interpreter",
-    "mediator",
-    "memento"
+    "filter",
+    "model-view-presenter",
+    "state-machine",
+    "lazy-sequence"
   ],
   "saga": [
     "transactional-outbox",
     "cqrs",
     "pipes-and-filters",
-    "rate-limiter"
+    "command"
   ],
   "transactional-outbox": [
     "saga",
@@ -180,81 +180,81 @@
     "observer"
   ],
   "bulkhead": [
-    "rate-limiter",
     "circuit-breaker",
+    "rate-limiter",
     "retry-backoff",
     "hedge-requests"
   ],
   "circuit-breaker": [
     "rate-limiter",
-    "bulkhead",
     "builder",
-    "abstract-factory"
+    "abstract-factory",
+    "chain"
   ],
   "double-checked-locking": [
     "nullobject",
-    "circuit-breaker",
-    "interpreter",
-    "mediator"
+    "mediator",
+    "lazy-sequence",
+    "circuit-breaker"
   ],
   "hedge-requests": [
     "bulkhead",
-    "rate-limiter",
     "retry-backoff",
-    "cqrs"
+    "rate-limiter",
+    "circuit-breaker"
   ],
   "idempotency-keys": [
     "hedge-requests",
     "retry-backoff",
-    "timeout-deadline-propagation",
-    "rate-limiter"
+    "rate-limiter",
+    "timeout-deadline-propagation"
   ],
   "nullobject": [
-    "interpreter",
+    "servant",
     "iterator",
-    "filter",
-    "servant"
+    "model-view-presenter",
+    "interpreter"
   ],
   "rate-limiter": [
     "circuit-breaker",
-    "bulkhead",
     "nullobject",
-    "saga"
+    "command",
+    "abstract-factory"
   ],
   "retry-backoff": [
     "bulkhead",
     "circuit-breaker",
-    "timeout-deadline-propagation",
-    "hedge-requests"
+    "rate-limiter",
+    "timeout-deadline-propagation"
   ],
   "timeout-deadline-propagation": [
     "bulkhead",
-    "rate-limiter",
+    "circuit-breaker",
     "hedge-requests",
     "idempotency-keys"
   ],
   "filter": [
-    "lazy-sequence",
     "servant",
-    "state-machine",
-    "iterator"
+    "lazy-sequence",
+    "iterator",
+    "state-machine"
   ],
   "lazy-sequence": [
     "servant",
     "filter",
-    "interpreter",
-    "iterator"
+    "iterator",
+    "state-machine"
   ],
   "method-object": [
     "filter",
-    "lazy-sequence",
     "servant",
-    "command"
+    "lazy-sequence",
+    "builder"
   ],
   "servant": [
-    "lazy-sequence",
     "filter",
-    "interpreter",
-    "mediator"
+    "lazy-sequence",
+    "visitor",
+    "model-view-presenter"
   ]
 }
