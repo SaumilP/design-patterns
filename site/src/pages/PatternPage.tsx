@@ -8,6 +8,23 @@ import { Button } from "../components/common/Button";
 import { CategoryBadge } from "../components/patterns/CategoryBadge";
 import { RelatedPatterns } from "../components/patterns/RelatedPatterns";
 
+function ensureSentencePunctuation(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return trimmed;
+  }
+
+  if (/[.!?:)]$/.test(trimmed)) {
+    return trimmed;
+  }
+
+  return `${trimmed}.`;
+}
+
+function normalizeSectionTitle(value: string) {
+  return value.toLowerCase().replace(/[^\p{L}\p{N}\s-]/gu, "").replace(/\s+/g, " ").trim();
+}
+
 export function PatternPage(props: { pattern: PatternRecord; related: PatternRecord[]; theme?: "dark" | "light" }) {
   const { pattern, related } = props;
   const category = categoryMap[pattern.category];
@@ -21,6 +38,68 @@ export function PatternPage(props: { pattern: PatternRecord; related: PatternRec
 
   useEffect(() => {
     let isActive = true;
+
+    function enhanceTradeOffSections(root: HTMLElement) {
+      const headingNodes = Array.from(root.querySelectorAll<HTMLElement>("h2, h3"));
+
+      for (const heading of headingNodes) {
+        if (normalizeSectionTitle(heading.textContent ?? "") !== "trade-offs") {
+          continue;
+        }
+
+        const existing = heading.parentElement?.querySelector(":scope > .tradeoff-columns");
+        if (existing) {
+          continue;
+        }
+
+        const columns: Array<{ title: string; list: HTMLElement }> = [];
+        const removable: HTMLElement[] = [];
+        let cursor = heading.nextElementSibling as HTMLElement | null;
+
+        while (cursor) {
+          if (/^H2$/i.test(cursor.tagName)) {
+            break;
+          }
+
+          if (/^H3$/i.test(cursor.tagName)) {
+            const title = normalizeSectionTitle(cursor.textContent ?? "");
+            const next = cursor.nextElementSibling as HTMLElement | null;
+            if ((title.startsWith("advantages") || title.startsWith("disadvantages")) && next && /^(UL|OL)$/i.test(next.tagName)) {
+              columns.push({ title: cursor.textContent?.trim() ?? "", list: next });
+              removable.push(cursor, next);
+            }
+          }
+
+          cursor = cursor.nextElementSibling as HTMLElement | null;
+        }
+
+        if (columns.length < 2) {
+          continue;
+        }
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "tradeoff-columns mt-6 grid gap-4 sm:grid-cols-2";
+
+        for (const column of columns) {
+          const card = document.createElement("section");
+          card.className = "theme-panel-soft rounded-2xl border p-4";
+
+          const title = document.createElement("div");
+          title.className = "theme-text-primary mb-3 font-semibold";
+          title.textContent = column.title;
+
+          column.list.classList.add("list-disc", "pl-5");
+          column.list.classList.remove("pl-0");
+          column.list.style.marginTop = "0";
+
+          card.append(title, column.list);
+          wrapper.append(card);
+        }
+
+        heading.insertAdjacentElement("afterend", wrapper);
+        removable.forEach((node) => node.remove());
+      }
+    }
 
     function scaleDiagram(node: HTMLElement) {
       const svg = node.querySelector("svg");
@@ -57,7 +136,13 @@ export function PatternPage(props: { pattern: PatternRecord; related: PatternRec
       }
 
       const containerWidth = Math.max(node.clientWidth - 16, 260);
-      const maxWidth = Math.min(containerWidth, 900);
+      const viewportTargetWidth =
+        window.innerWidth >= 1024
+          ? Math.max(window.innerWidth * 0.5, 420)
+          : window.innerWidth >= 640
+            ? window.innerWidth * 0.72
+            : window.innerWidth * 0.92;
+      const maxWidth = Math.min(containerWidth, viewportTargetWidth);
       const maxHeight = Math.min(window.innerHeight * 0.52, 420);
       let scale = Math.min(maxWidth / rawWidth, maxHeight / rawHeight, 1);
 
@@ -87,6 +172,8 @@ export function PatternPage(props: { pattern: PatternRecord; related: PatternRec
       if (!root) {
         return;
       }
+
+      enhanceTradeOffSections(root);
 
       const diagrams = Array.from(root.querySelectorAll<HTMLElement>(".mermaid"));
       if (!diagrams.length) {
@@ -202,27 +289,53 @@ export function PatternPage(props: { pattern: PatternRecord; related: PatternRec
             {pattern.problem ? (
               <div>
                 <div className="theme-text-primary font-semibold">Problem</div>
-                <p className="theme-text-secondary mt-2 leading-7">{pattern.problem}</p>
+                <p className="theme-text-secondary mt-2 leading-7">{ensureSentencePunctuation(pattern.problem)}</p>
               </div>
             ) : null}
 
             {pattern.applicability?.length ? (
               <div>
                 <div className="theme-text-primary font-semibold">Applicability</div>
-                <ul className="theme-text-secondary mt-2 space-y-2">
+                <ul className="theme-text-secondary mt-2 list-disc space-y-2 pl-5">
                   {pattern.applicability.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>{ensureSentencePunctuation(item)}</li>
                   ))}
                 </ul>
               </div>
             ) : null}
 
-            {pattern.tradeOffs?.length ? (
+            {(pattern.advantages?.length || pattern.disadvantages?.length) ? (
               <div>
                 <div className="theme-text-primary font-semibold">Trade-offs</div>
-                <ul className="theme-text-secondary mt-2 space-y-2">
+                <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                  <div className="theme-panel-soft rounded-2xl border p-4">
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-emerald-300">
+                      Advantages
+                    </div>
+                    <ul className="theme-text-secondary list-disc space-y-2 pl-5">
+                      {(pattern.advantages ?? []).map((item) => (
+                        <li key={item}>{ensureSentencePunctuation(item)}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="theme-panel-soft rounded-2xl border p-4">
+                    <div className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-rose-300">
+                      Disadvantages
+                    </div>
+                    <ul className="theme-text-secondary list-disc space-y-2 pl-5">
+                      {(pattern.disadvantages ?? []).map((item) => (
+                        <li key={item}>{ensureSentencePunctuation(item)}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : pattern.tradeOffs?.length ? (
+              <div>
+                <div className="theme-text-primary font-semibold">Trade-offs</div>
+                <ul className="theme-text-secondary mt-2 list-disc space-y-2 pl-5">
                   {pattern.tradeOffs.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>{ensureSentencePunctuation(item)}</li>
                   ))}
                 </ul>
               </div>
@@ -231,9 +344,9 @@ export function PatternPage(props: { pattern: PatternRecord; related: PatternRec
             {pattern.alternatives?.length ? (
               <div>
                 <div className="theme-text-primary font-semibold">Alternatives</div>
-                <ul className="theme-text-secondary mt-2 space-y-2">
+                <ul className="theme-text-secondary mt-2 list-disc space-y-2 pl-5">
                   {pattern.alternatives.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>{ensureSentencePunctuation(item)}</li>
                   ))}
                 </ul>
               </div>

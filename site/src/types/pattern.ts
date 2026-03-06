@@ -15,6 +15,8 @@ export interface PatternRecord {
   intent?: string;
   problem?: string;
   applicability?: string[];
+  advantages?: string[];
+  disadvantages?: string[];
   tradeOffs?: string[];
   alternatives?: string[];
   keywords: string[];

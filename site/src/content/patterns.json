@@ -12,6 +12,18 @@
       "When adding unnecessary complexity",
       "In performance-critical paths (if it introduces overhead)"
     ],
+    "advantages": [
+      "Isolates client from concrete classes",
+      "Ensures consistency among related products",
+      "Easy to swap product families",
+      "Centrali"
+    ],
+    "disadvantages": [
+      "More interfaces/classes required",
+      "Complex hierarchy",
+      "Adding new product type affects all factories",
+      "Overkill for simple scenarios"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "When simpler solutions suffice",
@@ -156,6 +168,16 @@
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
     ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "For simple scenarios where direct solutions suffice",
@@ -279,6 +301,16 @@
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
     ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "For simple scenarios where direct solutions suffice",
@@ -401,6 +433,19 @@
       "Scenario Why Avoid Simple Objects Objects with 1 2 parameters",
       "use direct constructors Mutable Objects Builder is designed for immutability",
       "doesn't benefit mutable objects Performance Critical Memory overhead of builder may matter in high frequency scenarios All Parameters Optional If no mandatory parameters, builder doesn't enforce constraints Frequent Modification If object needs modification after creation, use setters instead"
+    ],
+    "advantages": [
+      "**Improved Readability:** Fluent interface makes code self-documenting",
+      "**Flexibility:** Easy to add/remove optional parameters without breaking code",
+      "**Immutability:** Separating construction enables creation of immutable objects",
+      "**Complex Initiali"
+    ],
+    "disadvantages": [
+      "**Code Verbosity:** More classes and methods to maintain",
+      "**Performance Overhead:** Creating builder object adds memory/GC pressure",
+      "**Complexity for Simple Objects:** Overkill for objects with few parameters",
+      "**Thread Safety:** Builder itself is not thread-safe; don't share across threads",
+      "**Builder Proliferation:** Every complex class needs its own builder"
     ],
     "tradeOffs": [],
     "alternatives": [
@@ -567,6 +612,20 @@
       "Performance-critical applications",
       "Clear handler hierarchy exists"
     ],
+    "advantages": [
+      "Decouples sender from receiver",
+      "Dynamic handler assignment",
+      "Easy to add/remove handlers",
+      "Multiple handlers can process request",
+      "Flexible request handling"
+    ],
+    "disadvantages": [
+      "Request may not be handled",
+      "Debugging difficult with long chains",
+      "Performance impact with many handlers",
+      "Chain configuration complexity",
+      "Potential circular references"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "Simple sequential processing",
@@ -696,6 +755,21 @@
     "summary": "The Command pattern encapsulates a request as an object, allowing parameterization of clients with different requests, queuing of requests, and logging of requests.",
     "intent": "The Command pattern encapsulates a request as an object, allowing parameterization of clients with different requests, queuing of requests, and logging of requests.",
     "applicability": [],
+    "advantages": [
+      "Decouples invoker from receiver",
+      "Easy to add new commands",
+      "Supports undo/redo",
+      "Can queue commands",
+      "Supports command macros",
+      "Deferred execution"
+    ],
+    "disadvantages": [
+      "More classes required",
+      "Increased memory usage",
+      "Complexity for simple operations",
+      "Undo/redo state management",
+      "Performance overhead"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -805,6 +879,16 @@
       "For simple scenarios where direct solutions suffice",
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
+    ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
     ],
     "tradeOffs": [],
     "alternatives": [
@@ -929,6 +1013,16 @@
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
     ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "For simple scenarios where direct solutions suffice",
@@ -1052,6 +1146,16 @@
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
     ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "For simple scenarios where direct solutions suffice",
@@ -1174,6 +1278,18 @@
       "**Simple objects with straightforward creation** - Use direct instantiation",
       "**Single product type** - Unnecessary abstraction",
       "**Static factory methods sufficient** - Use static factories instead"
+    ],
+    "advantages": [
+      "Decouples creator from concrete products",
+      "Encapsulates creation logic",
+      "Easier to add new product types",
+      "Cleaner code than multiple if-else branches"
+    ],
+    "disadvantages": [
+      "Creates subclass hierarchy just for creation",
+      "Can be overkill for simple scenarios",
+      "More complex than direct instantiation",
+      "Multiple files for simple variations"
     ],
     "tradeOffs": [],
     "alternatives": [
@@ -1317,6 +1433,16 @@
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
     ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "For simple scenarios where direct solutions suffice",
@@ -1436,6 +1562,20 @@
     "summary": "The Interpreter pattern defines a grammatical representation for a language and an interpreter to interpret sentences in that language.",
     "intent": "The Interpreter pattern defines a grammatical representation for a language and an interpreter to interpret sentences in that language.",
     "applicability": [],
+    "advantages": [
+      "Easy to modify grammar",
+      "Grammar in code form",
+      "Extensible expressions",
+      "Recursive evaluation",
+      "Natural language representation"
+    ],
+    "disadvantages": [
+      "Complex for large grammars",
+      "Performance overhead",
+      "Many classes required",
+      "Difficult to parse",
+      "Memory consumption"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -1539,6 +1679,20 @@
     "summary": "The Iterator pattern provides a way to access elements of a collection sequentially without exposing its underlying representation.",
     "intent": "The Iterator pattern provides a way to access elements of a collection sequentially without exposing its underlying representation.",
     "applicability": [],
+    "advantages": [
+      "Uniform traversal interface",
+      "Hides collection structure",
+      "Supports multiple iterations",
+      "Decouples collection from traversal",
+      "Different iteration strategies"
+    ],
+    "disadvantages": [
+      "Additional complexity",
+      "Iterator overhead",
+      "State management in iterator",
+      "Concurrent modification issues",
+      "Performance impact"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -1644,6 +1798,17 @@
     "summary": "The Mediator pattern defines an object that encapsulates how a set of objects interact. It promotes loose coupling by keeping objects from referring to each other explicitly, and lets you vary their interaction independently.",
     "intent": "The Mediator pattern defines an object that encapsulates how a set of objects interact. It promotes loose coupling by keeping objects from referring to each other explicitly, and lets you vary their interaction independently.",
     "applicability": [],
+    "advantages": [
+      "Decouples colleagues",
+      "Centrali"
+    ],
+    "disadvantages": [
+      "Mediator complexity",
+      "God Object risk",
+      "Performance overhead",
+      "Debugging difficulty",
+      "Hidden dependencies"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -1762,6 +1927,17 @@
     "summary": "The Memento pattern captures and externalizes an object's internal state without violating encapsulation, and allows the object to be restored to this state later.",
     "intent": "The Memento pattern captures and externalizes an object's internal state without violating encapsulation, and allows the object to be restored to this state later.",
     "applicability": [],
+    "advantages": [
+      "Encapsulation preserved",
+      "Simple undo/redo",
+      "State history management",
+      "Seriali"
+    ],
+    "disadvantages": [
+      "Memory overhead",
+      "Performance cost for large objects",
+      "Seriali"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -1869,6 +2045,20 @@
     "summary": "The Observer pattern defines a one to many dependency between objects so that when one object changes state, all its dependents are notified automatically.",
     "intent": "The Observer pattern defines a one to many dependency between objects so that when one object changes state, all its dependents are notified automatically.",
     "applicability": [],
+    "advantages": [
+      "Loose coupling",
+      "Dynamic observer management",
+      "Supports broadcast communications",
+      "Natural event handling",
+      "Promotes reactive programming"
+    ],
+    "disadvantages": [
+      "Observer ordering unpredictable",
+      "Memory overhead (observer references)",
+      "Performance impact with many observers",
+      "Difficult to trace event flow",
+      "Can lead to memory leaks"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -1985,6 +2175,16 @@
       "For simple scenarios where direct solutions suffice",
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
+    ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
     ],
     "tradeOffs": [],
     "alternatives": [
@@ -2109,6 +2309,16 @@
       "When performance is critical and overhead is unacceptable",
       "In situations where the pattern doesn't naturally fit"
     ],
+    "advantages": [
+      "Provides structured solution",
+      "Promotes code reusability",
+      "Improves maintainability"
+    ],
+    "disadvantages": [
+      "May add complexity",
+      "Performance overhead",
+      "Learning curve"
+    ],
     "tradeOffs": [],
     "alternatives": [
       "For simple scenarios where direct solutions suffice",
@@ -2230,6 +2440,14 @@
     "applicability": [
       "Scenario Why Avoid Stateful Objects Sharing state across all clients leads to unexpected side effects Testable Systems Global dependencies make unit testing extremely difficult Multiple Instances Needed If business logic later requires multiple instances, refactoring is painful Distributed Systems Each JVM/process gets its own instance",
       "doesn't guarantee global uniqueness Simple Services Dependency Injection (DI) containers provide same benefits with better flexibility"
+    ],
+    "advantages": [
+      "**Global Access:** Provides easy, centrali"
+    ],
+    "disadvantages": [
+      "**Testing Difficulty:** Hard to mock for unit tests; global state complicates testing",
+      "**Hidden Dependencies:** Not obvious that code depends on a singleton; dependencies are implicit",
+      "**Synchroni"
     ],
     "tradeOffs": [],
     "alternatives": [
@@ -2401,6 +2619,17 @@
     "summary": "The State pattern allows an object to alter its behavior when its internal state changes. The object will appear to change its class.",
     "intent": "The State pattern allows an object to alter its behavior when its internal state changes. The object will appear to change its class.",
     "applicability": [],
+    "advantages": [
+      "Eliminates large conditional statements",
+      "Locali"
+    ],
+    "disadvantages": [
+      "Increased number of classes",
+      "More complex than simple conditionals",
+      "State dependency coupling",
+      "Increased memory usage",
+      "Performance overhead"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -2509,6 +2738,20 @@
     "summary": "The Strategy pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable.",
     "intent": "The Strategy pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable.",
     "applicability": [],
+    "advantages": [
+      "Encapsulates algorithms",
+      "Runtime algorithm selection",
+      "Eliminates conditionals",
+      "Promotes composition",
+      "Easy to add new strategies"
+    ],
+    "disadvantages": [
+      "Increased number of classes",
+      "Overhead for simple algorithms",
+      "Client must understand strategies",
+      "Context-strategy coupling",
+      "Strategy selection complexity"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -2613,6 +2856,20 @@
     "summary": "The Template Method pattern defines the skeleton of an algorithm in a base class, letting subclasses override specific steps.",
     "intent": "The Template Method pattern defines the skeleton of an algorithm in a base class, letting subclasses override specific steps.",
     "applicability": [],
+    "advantages": [
+      "Code reuse",
+      "Controls extension points",
+      "Defines skeleton once",
+      "Consistent algorithm structure",
+      "Promotes inheritance"
+    ],
+    "disadvantages": [
+      "Inheritance hierarchy required",
+      "Tight coupling between base and derived",
+      "Hollywood Principle violation possible",
+      "Inflexible for diverse algorithms",
+      "Violates Composition over Inheritance"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -2719,6 +2976,20 @@
     "summary": "The Visitor pattern represents an operation to be performed on elements of an object structure. It lets you define a new operation without changing the classes of the elements on which it operates.",
     "intent": "The Visitor pattern represents an operation to be performed on elements of an object structure. It lets you define a new operation without changing the classes of the elements on which it operates.",
     "applicability": [],
+    "advantages": [
+      "Separates operations from objects",
+      "Easy to add new operations",
+      "Gathers related operations",
+      "Follows Open/Closed Principle",
+      "Centrali"
+    ],
+    "disadvantages": [
+      "Difficult to add new element types",
+      "Violates Encapsulation",
+      "Double dispatch complexity",
+      "Hard to understand",
+      "Multiple pass traversals"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -2827,6 +3098,20 @@
     "summary": "The Model View Presenter (MVP) pattern separates presentation logic from business logic by introducing a presenter component that mediates between the view and model.",
     "intent": "The Model View Presenter (MVP) pattern separates presentation logic from business logic by introducing a presenter component that mediates between the view and model.",
     "applicability": [],
+    "advantages": [
+      "Clear separation of concerns",
+      "Testable UI logic",
+      "Reusable presenters",
+      "Framework independence",
+      "Flexible UI"
+    ],
+    "disadvantages": [
+      "More classes and complexity",
+      "Boilerplate code",
+      "Learning curve",
+      "Performance overhead",
+      "Over-engineering for simple UIs"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -2936,6 +3221,16 @@
     "summary": "The Service Locator pattern centralizes logic for creating and accessing services, providing a single point for service instantiation and discovery.",
     "intent": "The Service Locator pattern centralizes logic for creating and accessing services, providing a single point for service instantiation and discovery.",
     "applicability": [],
+    "advantages": [
+      "Centrali"
+    ],
+    "disadvantages": [
+      "Hidden dependencies",
+      "Testing complexity",
+      "Global state issues",
+      "Service locator coupling",
+      "Anti-pattern warning"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3041,6 +3336,18 @@
     "summary": "The State Machine pattern models complex workflows and state transitions using explicit state objects and transitions.",
     "intent": "The State Machine pattern models complex workflows and state transitions using explicit state objects and transitions.",
     "applicability": [],
+    "advantages": [
+      "Clear state modeling",
+      "Enforced valid transitions",
+      "Easy to visuali"
+    ],
+    "disadvantages": [
+      "Increased complexity",
+      "Many state classes",
+      "Overhead for simple cases",
+      "State explosion risk",
+      "Difficult to modify existing states"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3144,6 +3451,12 @@
     "summary": "CQRS separates the write model (commands) from the read model (queries). Writes typically emit events ; reads are served from a projection optimized for queries.",
     "intent": "CQRS separates the write model (commands) from the read model (queries). Writes typically emit events ; reads are served from a projection optimized for queries. An example: player profile writes (rename) emit events; profile reads come from a query store.",
     "applicability": [],
+    "advantages": [
+      "Great for read-heavy systems (leaderboards, profiles)",
+      "Clear separation of concerns",
+      "Works naturally with event sourcing (optional)"
+    ],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3250,6 +3563,20 @@
     "summary": "The Pipes and Filters pattern processes data through a series of independent, modular processing components (filters) connected by data flow channels (pipes).",
     "intent": "The Pipes and Filters pattern processes data through a series of independent, modular processing components (filters) connected by data flow channels (pipes).",
     "applicability": [],
+    "advantages": [
+      "Modularity and reusability",
+      "Flexible data processing",
+      "Parallel processing support",
+      "Easy to reconfigure",
+      "Independent testing"
+    ],
+    "disadvantages": [
+      "Complexity with many filters",
+      "Data transformation overhead",
+      "Error handling complexity",
+      "Debugging difficulty",
+      "Performance considerations"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3351,6 +3678,12 @@
     "summary": "The Saga pattern manages a long running business transaction across multiple services by splitting it into steps . Each step has an optional compensation that undoes the work if a later step fails.",
     "intent": "The Saga pattern manages a long running business transaction across multiple services by splitting it into steps . Each step has an optional compensation that undoes the work if a later step fails. An example: buying a legendary item may touch inventory , wallet , and granting services.",
     "applicability": [],
+    "advantages": [
+      "Works well with microservices and async messaging",
+      "Handles partial failures without global locks",
+      "Encourages explicit recovery design"
+    ],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3463,6 +3796,11 @@
     "summary": "The Transactional Outbox pattern ensures that when your service writes domain data, it also writes the integration event to an outbox table in the same database transaction . A separate publisher later reads the outbox and publishes events to a broker.",
     "intent": "The Transactional Outbox pattern ensures that when your service writes domain data, it also writes the integration event to an outbox table in the same database transaction . A separate publisher later reads the outbox and publishes events to a broker. An example: buying coins writes an order + emits coins.purchased without losing events during crashes.",
     "applicability": [],
+    "advantages": [
+      "Strong consistency between domain write and event record",
+      "Simple recovery: publish from outbox after restart"
+    ],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3577,6 +3915,13 @@
     "summary": "The Bulkhead pattern limits concurrency to isolate failures and resource exhaustion. If one dependency becomes slow, it cannot consume all threads/connections.",
     "intent": "The Bulkhead pattern limits concurrency to isolate failures and resource exhaustion. If one dependency becomes slow, it cannot consume all threads/connections. An example: isolate inventory calls so a slow inventory DB does not take down matchmaking.",
     "applicability": [],
+    "advantages": [
+      "Prevents one dependency from exhausting capacity",
+      "Simple mental model (permits)"
+    ],
+    "disadvantages": [
+      "Needs si"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3675,6 +4020,17 @@
       "For in-process calls where failures are not correlated",
       "When you cannot tolerate short-circuiting (must always attempt)",
       "If you cannot operationally monitor and tune it"
+    ],
+    "advantages": [
+      "Prevents cascading failures and reduces blast radius",
+      "Gives dependencies time to recover (cool-down)",
+      "Improves latency by failing fast when unhealthy",
+      "Makes recovery behavior explicit and testable"
+    ],
+    "disadvantages": [
+      "Adds state and tuning parameters (thresholds, timers)",
+      "Wrong settings can cause flapping (open/close too frequently)",
+      "Needs good observability to diagnose and tune"
     ],
     "tradeOffs": [],
     "alternatives": [
@@ -3806,6 +4162,8 @@
     "summary": "The Double Checked Locking pattern is a thread safe lazy initialization technique that minimizes synchronization overhead.",
     "intent": "The Double Checked Locking pattern is a thread safe lazy initialization technique that minimizes synchronization overhead.",
     "applicability": [],
+    "advantages": [],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -3897,6 +4255,11 @@
     "summary": "Hedging issues a duplicate request when the primary is slow, returning the first successful response. This reduces tail latency but increases load.",
     "intent": "Hedging issues a duplicate request when the primary is slow, returning the first successful response. This reduces tail latency but increases load. An example: hedge read only profile fetches across replicas. Only safe for idempotent reads (or when combined with idempotency keys).",
     "applicability": [],
+    "advantages": [
+      "Reduces tail latency",
+      "Works well for read replicas and caches"
+    ],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4001,6 +4364,8 @@
     "summary": "Idempotency keys ensure that repeated requests with the same key produce the same effect/result, even if the client retries due to timeouts.",
     "intent": "Idempotency keys ensure that repeated requests with the same key produce the same effect/result, even if the client retries due to timeouts. An example: prevent double charging when purchasing in game currency if the client retries.",
     "applicability": [],
+    "advantages": [],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4084,6 +4449,20 @@
     "summary": "The Null Object pattern provides an object as a surrogate for null references, avoiding null checks throughout the code.",
     "intent": "The Null Object pattern provides an object as a surrogate for null references, avoiding null checks throughout the code.",
     "applicability": [],
+    "advantages": [
+      "Eliminates null checks",
+      "Default behavior encapsulated",
+      "Cleaner code",
+      "Safer code",
+      "Visitor pattern support"
+    ],
+    "disadvantages": [
+      "Silent failures possible",
+      "Harder to detect issues",
+      "Performance overhead",
+      "Over-abstraction risk",
+      "Debugging complexity"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4184,6 +4563,12 @@
     "summary": "The Rate Limiter pattern controls how frequently an operation is allowed to run. It protects shared resources from spikes and prevents a single client from monopolizing capacity.",
     "intent": "The Rate Limiter pattern controls how frequently an operation is allowed to run. It protects shared resources from spikes and prevents a single client from monopolizing capacity. An example: limit leaderboard refresh or matchmaking search calls per player to reduce load.",
     "applicability": [],
+    "advantages": [
+      "Protects systems from bursts and abuse",
+      "Improves fairness across clients",
+      "Reduces tail latency under load"
+    ],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4293,6 +4678,11 @@
     "summary": "Retry with backoff retries transient failures while avoiding immediate, synchronized retries that amplify outages.",
     "intent": "Retry with backoff retries transient failures while avoiding immediate, synchronized retries that amplify outages. An example: retry transient session validation failures with exponential backoff and jitter.",
     "applicability": [],
+    "advantages": [
+      "Recovers from transient failures",
+      "Reduces retry storms via backoff/jitter"
+    ],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4383,6 +4773,8 @@
     "summary": "Deadline propagation uses a single end to end time budget that is passed to all downstream calls. Each call uses the remaining budget so the system fails fast and predictably.",
     "intent": "Deadline propagation uses a single end to end time budget that is passed to all downstream calls. Each call uses the remaining budget so the system fails fast and predictably. An example: a “join matchmaking” request has a 200ms budget across multiple services.",
     "applicability": [],
+    "advantages": [],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4474,6 +4866,20 @@
     "summary": "The Filter pattern (or Criteria pattern) provides a way to filter collections of objects using different criteria in a flexible and reusable manner.",
     "intent": "The Filter pattern (or Criteria pattern) provides a way to filter collections of objects using different criteria in a flexible and reusable manner.",
     "applicability": [],
+    "advantages": [
+      "Flexible filtering logic",
+      "Reusable criteria",
+      "Easy combination of filters",
+      "Clear separation of concerns",
+      "Testable filter logic"
+    ],
+    "disadvantages": [
+      "Additional classes required",
+      "Performance with many filters",
+      "Memory overhead for criteria objects",
+      "Learning curve",
+      "Over-engineering for simple cases"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4579,6 +4985,20 @@
     "summary": "The Lazy Sequence pattern defers sequence element computation until they're actually accessed, enabling efficient processing of potentially infinite sequences.",
     "intent": "The Lazy Sequence pattern defers sequence element computation until they're actually accessed, enabling efficient processing of potentially infinite sequences.",
     "applicability": [],
+    "advantages": [
+      "Deferred expensive computations",
+      "Memory efficient",
+      "Support infinite sequences",
+      "Streaming processing",
+      "Computation on demand"
+    ],
+    "disadvantages": [
+      "Harder to understand",
+      "Non-deterministic timing",
+      "Caching overhead",
+      "Debugging complexity",
+      "First-access latency"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4685,6 +5105,8 @@
     "summary": "The Method Object pattern converts a method into an object, enabling flexible method parameter passing and invocation.",
     "intent": "The Method Object pattern converts a method into an object, enabling flexible method parameter passing and invocation.",
     "applicability": [],
+    "advantages": [],
+    "disadvantages": [],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [
@@ -4770,6 +5192,20 @@
     "summary": "The Servant pattern defines common functionality in a separate class (servant) that serves multiple classes, enabling code reuse without inheritance.",
     "intent": "The Servant pattern defines common functionality in a separate class (servant) that serves multiple classes, enabling code reuse without inheritance.",
     "applicability": [],
+    "advantages": [
+      "Code reuse without inheritance",
+      "Flexible behavior sharing",
+      "Avoids multiple inheritance",
+      "Clean separation of concerns",
+      "Reusable servant components"
+    ],
+    "disadvantages": [
+      "Additional object dependencies",
+      "Parameter passing complexity",
+      "Servant state management",
+      "Performance overhead",
+      "Design complexity"
+    ],
     "tradeOffs": [],
     "alternatives": [],
     "keywords": [

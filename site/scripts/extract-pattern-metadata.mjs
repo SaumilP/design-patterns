@@ -169,13 +169,28 @@ function extractIntentProblemApplicability(content) {
 }
 
 function extractTradeOffs(content) {
+  const extractSubsection = (labels) => {
+    const pattern = new RegExp(
+      `^###\\s+.*(?:${labels.join("|")}).*$([\\s\\S]*?)(?=^###\\s+|^##\\s+|\\Z)`,
+      "gim",
+    );
+    const match = pattern.exec(content);
+    return match?.[1]?.trim() ?? "";
+  };
+
+  const advantages = linesToList(extractSubsection(["Advantages", "Pros"]));
+  const disadvantages = linesToList(extractSubsection(["Disadvantages", "Cons"]));
   const tradeOffsSection = sectionContent(content, [
     "Trade-offs",
     "Tradeoffs",
     "Advantages",
     "Disadvantages",
   ]);
-  return linesToList(tradeOffsSection);
+  return {
+    advantages,
+    disadvantages,
+    tradeOffs: linesToList(tradeOffsSection),
+  };
 }
 
 function extractAlternatives(content) {
@@ -243,7 +258,7 @@ export async function extractPatternMetadata({
     ...headings.map((heading) => normalizeHeading(heading)),
   ]);
   const { intent, problem, applicability } = extractIntentProblemApplicability(parsed.content);
-  const tradeOffs = extractTradeOffs(parsed.content);
+  const { advantages, disadvantages, tradeOffs } = extractTradeOffs(parsed.content);
   const alternatives = extractAlternatives(parsed.content);
   const keywords = deriveKeywords({
     name,
@@ -266,6 +281,8 @@ export async function extractPatternMetadata({
     intent,
     problem,
     applicability,
+    advantages,
+    disadvantages,
     tradeOffs,
     alternatives,
     keywords,
