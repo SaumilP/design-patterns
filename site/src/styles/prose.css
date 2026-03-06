@@ -1,0 +1,72 @@
+.prose-shell {
+  color: #cbd5e1;
+}
+
+.prose-shell h1,
+.prose-shell h2,
+.prose-shell h3,
+.prose-shell h4 {
+  color: #f8fafc;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui;
+  line-height: 1.1;
+}
+
+.prose-shell h2 {
+  margin-top: 2.5rem;
+  font-size: 1.9rem;
+}
+
+.prose-shell h3 {
+  margin-top: 1.75rem;
+  font-size: 1.3rem;
+}
+
+.prose-shell p,
+.prose-shell li {
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.prose-shell a {
+  color: #67e8f9;
+}
+
+.prose-shell pre {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #020617;
+  padding: 1rem;
+}
+
+.prose-shell code {
+  border-radius: 0.45rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.15rem 0.4rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9em;
+}
+
+.prose-shell pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.prose-shell blockquote {
+  margin: 1.5rem 0;
+  border-left: 4px solid #22d3ee;
+  padding-left: 1rem;
+  color: #94a3b8;
+}
+
+.prose-shell table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose-shell th,
+.prose-shell td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem;
+  text-align: left;
+}

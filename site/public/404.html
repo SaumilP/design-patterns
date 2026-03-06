@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/design-patterns/" />
+    <script>
+      (function () {
+        var base = "/design-patterns";
+        var path = window.location.pathname.replace(base, "") || "/";
+        var redirectPath = path + window.location.search + window.location.hash;
+        window.sessionStorage.setItem("gh-pages-path", redirectPath);
+        window.location.replace(base + "/");
+      })();
+    </script>
+    <title>Redirecting…</title>
+  </head>
+  <body></body>
+</html>

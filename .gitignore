@@ -12,3 +12,6 @@ target
 *.uml
 .idea/
 .vscode/
+site/node_modules/
+site/dist/
+book-output/
