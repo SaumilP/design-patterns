@@ -33,7 +33,7 @@ export function Header({ onOpenSearch, theme, themeMode, onToggleTheme }: Header
     <header className={`theme-header sticky top-0 z-40 border-b backdrop-blur-xl transition ${isCompact ? "shadow-2xl" : ""}`}>
       <div className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 transition-all md:px-6 ${isCompact ? "py-3" : "py-4"}`}>
         <Link to="/" className="flex items-center gap-3">
-          <img src={`${import.meta.env.BASE_URL}logo-mark.svg`} alt="Pattern Hex logo" className="h-11 w-11" />
+          <img src={`${import.meta.env.BASE_URL}logo-icon.svg`} alt="Pattern Hex logo" className="h-11 w-11" />
           <div>
             <div className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Pattern Hex</div>
             <div className="theme-text-muted text-xs">Practical Java Design Patterns</div>
