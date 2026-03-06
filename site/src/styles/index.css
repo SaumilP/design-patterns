@@ -6,6 +6,84 @@
 
 :root {
   color-scheme: dark;
+  --page-bg: #020617;
+  --page-bg-end: #050b16;
+  --page-accent-a: rgba(34, 211, 238, 0.18);
+  --page-accent-b: rgba(79, 70, 229, 0.18);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-soft: rgba(255, 255, 255, 0.04);
+  --panel-strong: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --grid-line: rgba(148, 163, 184, 0.08);
+  --header-bg: rgba(2, 6, 23, 0.82);
+  --tag-bg: rgba(15, 23, 42, 0.7);
+  --tag-text: #94a3b8;
+  --input-bg: rgba(2, 6, 23, 0.72);
+  --surface-inset: rgba(255, 255, 255, 0.03);
+  --button-primary-bg: rgba(34, 211, 238, 0.18);
+  --button-primary-bg-hover: rgba(34, 211, 238, 0.28);
+  --button-primary-text: #cffafe;
+  --prose-text: #cbd5e1;
+  --prose-heading: #f8fafc;
+  --prose-link: #67e8f9;
+  --prose-pre-bg: #020617;
+  --prose-pre-border: rgba(255, 255, 255, 0.08);
+  --prose-inline-code-bg: rgba(255, 255, 255, 0.08);
+  --prose-label-bg: rgba(15, 23, 42, 0.92);
+  --prose-label-text: #67e8f9;
+  --prose-mermaid-bg: rgba(2, 6, 23, 0.9);
+  --prose-blockquote: #94a3b8;
+  --hljs-keyword: #93c5fd;
+  --hljs-string: #86efac;
+  --hljs-number: #fca5a5;
+  --hljs-comment: #64748b;
+  --hljs-variable: #fcd34d;
+  --hljs-meta: #c4b5fd;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page-bg: #f8fafc;
+  --page-bg-end: #eef2ff;
+  --page-accent-a: rgba(56, 189, 248, 0.16);
+  --page-accent-b: rgba(249, 115, 22, 0.12);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --panel: rgba(255, 255, 255, 0.88);
+  --panel-soft: rgba(255, 255, 255, 0.72);
+  --panel-strong: rgba(255, 255, 255, 0.96);
+  --border: rgba(15, 23, 42, 0.1);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --grid-line: rgba(15, 23, 42, 0.06);
+  --header-bg: rgba(248, 250, 252, 0.82);
+  --tag-bg: rgba(241, 245, 249, 0.92);
+  --tag-text: #475569;
+  --input-bg: rgba(255, 255, 255, 0.88);
+  --surface-inset: rgba(255, 255, 255, 0.55);
+  --button-primary-bg: rgba(8, 145, 178, 0.14);
+  --button-primary-bg-hover: rgba(8, 145, 178, 0.22);
+  --button-primary-text: #155e75;
+  --prose-text: #334155;
+  --prose-heading: #0f172a;
+  --prose-link: #0369a1;
+  --prose-pre-bg: #f8fafc;
+  --prose-pre-border: rgba(15, 23, 42, 0.1);
+  --prose-inline-code-bg: rgba(15, 23, 42, 0.06);
+  --prose-label-bg: rgba(226, 232, 240, 0.95);
+  --prose-label-text: #0f172a;
+  --prose-mermaid-bg: rgba(255, 255, 255, 0.96);
+  --prose-blockquote: #475569;
+  --hljs-keyword: #1d4ed8;
+  --hljs-string: #047857;
+  --hljs-number: #b45309;
+  --hljs-comment: #64748b;
+  --hljs-variable: #7c3aed;
+  --hljs-meta: #be185d;
 }
 
 html {
@@ -15,8 +93,8 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #020617;
-  color: #f8fafc;
+  background: var(--page-bg);
+  color: var(--text-primary);
   font-family: "Manrope", ui-sans-serif, system-ui;
 }
 
@@ -37,4 +115,56 @@ input {
 *:focus-visible {
   outline: 2px solid #67e8f9;
   outline-offset: 2px;
+}
+
+.theme-shell {
+  background:
+    radial-gradient(circle at top, var(--page-accent-a), transparent 22%),
+    radial-gradient(circle at 80% 20%, var(--page-accent-b), transparent 24%),
+    linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg) 55%, var(--page-bg-end) 100%);
+  color: var(--text-primary);
+}
+
+.theme-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+}
+
+.theme-panel {
+  background: var(--panel);
+  border-color: var(--border);
+}
+
+.theme-panel-soft {
+  background: var(--panel-soft);
+  border-color: var(--border);
+}
+
+.theme-header {
+  background: var(--header-bg);
+  border-color: var(--border);
+}
+
+.theme-input {
+  background: var(--input-bg);
+  border-color: var(--border);
+}
+
+.theme-tag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-color: var(--border);
+}
+
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-text-muted {
+  color: var(--text-muted);
 }

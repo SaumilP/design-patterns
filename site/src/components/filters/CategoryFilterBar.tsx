@@ -15,7 +15,7 @@ export function CategoryFilterBar(props: {
         className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
           activeCategory === "all"
             ? "bg-cyan-400/18 text-cyan-100"
-            : "border border-white/10 bg-white/[0.04] text-slate-300 hover:border-white/20"
+            : "border border-[color:var(--border)] bg-[var(--panel-soft)] text-[var(--text-secondary)] hover:border-[color:var(--border-strong)]"
         }`}
       >
         All
@@ -28,7 +28,7 @@ export function CategoryFilterBar(props: {
           className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
             activeCategory === category.id
               ? "bg-cyan-400/18 text-cyan-100"
-              : "border border-white/10 bg-white/[0.04] text-slate-300 hover:border-white/20"
+              : "border border-[color:var(--border)] bg-[var(--panel-soft)] text-[var(--text-secondary)] hover:border-[color:var(--border-strong)]"
           }`}
         >
           {category.label}

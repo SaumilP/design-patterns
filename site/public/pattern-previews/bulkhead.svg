@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="70" x2="1130" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fcd34d" />
+      <stop offset="1" stop-color="#fb923c" />
+    </linearGradient>
+    <linearGradient id="panel" x1="190" y1="120" x2="890" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff7ed" />
+      <stop offset="1" stop-color="#ffffff" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="42" fill="#0f172a" />
+  <rect x="28" y="28" width="1144" height="574" rx="34" fill="url(#bg)" />
+  <g opacity=".24">
+    <path d="M40 124H1160" stroke="white" />
+    <path d="M40 248H1160" stroke="white" />
+    <path d="M40 372H1160" stroke="white" />
+    <path d="M40 496H1160" stroke="white" />
+  </g>
+  <circle cx="440" cy="179" r="35" fill="#ea580c" opacity="0.14" /><circle cx="428" cy="112" r="49" fill="#ea580c" opacity="0.23" /><circle cx="481" cy="101" r="42" fill="#ea580c" opacity="0.17" /><circle cx="283" cy="163" r="44" fill="#ea580c" opacity="0.15" /><circle cx="213" cy="208" r="35" fill="#ea580c" opacity="0.22" />
+  <rect x="96" y="104" width="1008" height="422" rx="34" fill="url(#panel)" opacity=".95" />
+  <rect x="140" y="148" width="144" height="42" rx="21" fill="#7c2d12" opacity=".12" />
+  <text x="164" y="176" fill="#7c2d12" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700">RELIABILITY</text>
+  <text x="140" y="280" fill="#7c2d12" font-family="Space Grotesk, Arial, sans-serif" font-size="72" font-weight="700">Bulkhead</text>
+  <text x="140" y="330" fill="#ea580c" font-family="JetBrains Mono, monospace" font-size="26" font-weight="600">reliability • overview</text>
+  <rect x="110" y="149" width="114" height="16" rx="8" fill="#7c2d12" opacity="0.18" /><rect x="275" y="173" width="125" height="16" rx="8" fill="#7c2d12" opacity="0.26" /><rect x="440" y="169" width="140" height="16" rx="8" fill="#7c2d12" opacity="0.34" /><rect x="605" y="156" width="128" height="16" rx="8" fill="#7c2d12" opacity="0.42" />
+  <g transform="translate(885 170)">
+    <rect width="140" height="140" rx="34" fill="#7c2d12" opacity=".10" />
+    <path d="M70 18 114 44v52l-44 26-44-26V44l44-26Z" fill="#ea580c" opacity=".92" />
+    <path d="M47 54h31c13 0 22 7 22 17s-9 17-22 17H47V54Z" fill="white" />
+  </g>
+</svg>

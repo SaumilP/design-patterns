@@ -130,7 +130,7 @@ function HomeRoute(props: { patterns: PatternRecord[]; onOpenPalette: () => void
   );
 }
 
-function PatternRoute(props: { patterns: PatternRecord[]; relatedPatterns: RelatedPatternMap }) {
+function PatternRoute(props: { patterns: PatternRecord[]; relatedPatterns: RelatedPatternMap; theme: "dark" | "light" }) {
   const { slug } = useParams();
   const pattern = props.patterns.find((item) => item.slug === slug);
   if (!pattern) {
@@ -139,7 +139,7 @@ function PatternRoute(props: { patterns: PatternRecord[]; relatedPatterns: Relat
   const related = (props.relatedPatterns[pattern.id] ?? [])
     .map((id) => props.patterns.find((candidate) => candidate.id === id))
     .filter((item): item is PatternRecord => Boolean(item));
-  return <PatternPage pattern={pattern} related={related} />;
+  return <PatternPage pattern={pattern} related={related} theme={props.theme} />;
 }
 
 export default function App() {
@@ -147,7 +147,22 @@ export default function App() {
   const [relatedPatterns, setRelatedPatterns] = useState<RelatedPatternMap>({});
   const [isLoading, setIsLoading] = useState(true);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const { recentSearches, remember } = useRecentSearches();
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem("pattern-theme");
+    if (stored === "dark" || stored === "light") {
+      setTheme(stored);
+    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      setTheme("light");
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("pattern-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     let active = true;
@@ -190,7 +205,11 @@ export default function App() {
   }, []);
 
   return (
-    <AppShell onOpenSearch={() => setPaletteOpen(true)}>
+    <AppShell
+      onOpenSearch={() => setPaletteOpen(true)}
+      theme={theme}
+      onToggleTheme={() => setTheme((value) => (value === "dark" ? "light" : "dark"))}
+    >
       <SearchCommandPalette
         isOpen={paletteOpen}
         onClose={() => setPaletteOpen(false)}
@@ -209,7 +228,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomeRoute patterns={patterns} onOpenPalette={() => setPaletteOpen(true)} />} />
           <Route path="/patterns" element={<CatalogRoute patterns={patterns} onOpenPalette={() => setPaletteOpen(true)} />} />
-          <Route path="/patterns/:slug" element={<PatternRoute patterns={patterns} relatedPatterns={relatedPatterns} />} />
+          <Route path="/patterns/:slug" element={<PatternRoute patterns={patterns} relatedPatterns={relatedPatterns} theme={theme} />} />
           <Route path="/categories/:categoryId" element={<CategoryRoute patterns={patterns} onOpenPalette={() => setPaletteOpen(true)} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/404" element={<NotFoundPage />} />

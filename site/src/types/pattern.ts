@@ -32,6 +32,8 @@ export interface PatternRecord {
   headingIndex?: string[];
   excerpt?: string;
   featured?: boolean;
+  previewImage?: string;
+  previewThumbnailImage?: string;
 }
 
 export type RelatedPatternMap = Record<string, string[]>;

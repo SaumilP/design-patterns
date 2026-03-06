@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { extractPatternMetadata } from "./extract-pattern-metadata.mjs";
+import { generatePatternPreview } from "./generate-pattern-preview.mjs";
 
 const CATEGORY_FOLDERS = [
   "gof-patterns",
@@ -86,18 +87,29 @@ async function build() {
       const markdownSource = await fs.readFile(readmePath, "utf8");
       const hasTests = await exists(path.join(patternPath, "src/test"));
       const demoCodePaths = await listDemoCodePaths(patternPath);
+      const record = await extractPatternMetadata({
+        categoryFolder,
+        folderName,
+        repoPath,
+        githubUrl: `https://github.com/SaumilP/design-patterns/tree/main/${repoPath}`,
+        markdownSource,
+        hasTests,
+        demoCodePaths,
+      });
 
-      patterns.push(
-        await extractPatternMetadata({
-          categoryFolder,
-          folderName,
-          repoPath,
-          githubUrl: `https://github.com/SaumilP/design-patterns/tree/main/${repoPath}`,
-          markdownSource,
-          hasTests,
-          demoCodePaths,
-        }),
-      );
+      const previewImage = await generatePatternPreview({
+        siteRoot,
+        slug: record.slug,
+        name: record.name,
+        category: record.category,
+        subcategory: record.subcategory,
+        tags: record.tags,
+      });
+
+      record.previewImage = previewImage;
+      record.previewThumbnailImage = previewImage;
+
+      patterns.push(record);
     }
   }
 

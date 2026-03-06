@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="70" x2="1130" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7dd3fc" />
+      <stop offset="1" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="panel" x1="190" y1="120" x2="890" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eff6ff" />
+      <stop offset="1" stop-color="#ffffff" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="42" fill="#0f172a" />
+  <rect x="28" y="28" width="1144" height="574" rx="34" fill="url(#bg)" />
+  <g opacity=".24">
+    <path d="M40 124H1160" stroke="white" />
+    <path d="M40 248H1160" stroke="white" />
+    <path d="M40 372H1160" stroke="white" />
+    <path d="M40 496H1160" stroke="white" />
+  </g>
+  <circle cx="436" cy="173" r="36" fill="#0284c7" opacity="0.21" /><circle cx="245" cy="82" r="26" fill="#0284c7" opacity="0.22" /><circle cx="394" cy="95" r="41" fill="#0284c7" opacity="0.17" /><circle cx="869" cy="183" r="30" fill="#0284c7" opacity="0.23" /><circle cx="256" cy="212" r="49" fill="#0284c7" opacity="0.23" />
+  <rect x="96" y="104" width="1008" height="422" rx="34" fill="url(#panel)" opacity=".95" />
+  <rect x="140" y="148" width="144" height="42" rx="21" fill="#0c4a6e" opacity=".12" />
+  <text x="164" y="176" fill="#0c4a6e" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700">ENTERPRISE-INTEGRATION</text>
+  <text x="140" y="280" fill="#0c4a6e" font-family="Space Grotesk, Arial, sans-serif" font-size="72" font-weight="700">Saga</text>
+  <text x="140" y="330" fill="#0284c7" font-family="JetBrains Mono, monospace" font-size="26" font-weight="600">enterprise-integration • overview</text>
+  <rect x="110" y="149" width="122" height="16" rx="8" fill="#0c4a6e" opacity="0.18" /><rect x="275" y="156" width="132" height="16" rx="8" fill="#0c4a6e" opacity="0.26" /><rect x="440" y="153" width="125" height="16" rx="8" fill="#0c4a6e" opacity="0.34" /><rect x="605" y="164" width="125" height="16" rx="8" fill="#0c4a6e" opacity="0.42" />
+  <g transform="translate(885 170)">
+    <rect width="140" height="140" rx="34" fill="#0c4a6e" opacity=".10" />
+    <path d="M70 18 114 44v52l-44 26-44-26V44l44-26Z" fill="#0284c7" opacity=".92" />
+    <path d="M47 54h31c13 0 22 7 22 17s-9 17-22 17H47V54Z" fill="white" />
+  </g>
+</svg>

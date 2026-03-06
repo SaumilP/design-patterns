@@ -1,5 +1,6 @@
 import MarkdownIt from "markdown-it";
 import matter from "gray-matter";
+import hljs from "highlight.js";
 import {
   collectHeadings,
   getFirstParagraph,
@@ -12,11 +13,37 @@ import {
   uniqueNormalized,
 } from "./markdown-utils.mjs";
 
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 const markdown = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
 });
+
+markdown.renderer.rules.fence = (tokens, index) => {
+  const token = tokens[index];
+  const language = (token.info || "").trim().split(/\s+/)[0];
+  const code = token.content;
+
+  if (language === "mermaid") {
+    return `<div class="mermaid">${escapeHtml(code)}</div>`;
+  }
+
+  const validLanguage = language && hljs.getLanguage(language);
+  const highlighted = validLanguage
+    ? hljs.highlight(code, { language }).value
+    : hljs.highlightAuto(code).value;
+  const label = validLanguage ? language : "code";
+
+  return `<div class="code-block"><div class="code-block__label">${escapeHtml(label)}</div><pre><code class="hljs language-${escapeHtml(label)}">${highlighted}</code></pre></div>`;
+};
 
 const CATEGORY_LABELS = {
   gof: "GoF",

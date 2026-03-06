@@ -12,11 +12,11 @@ type Props =
 
 const variants = {
   primary:
-    "border border-cyan-400/30 bg-cyan-400/18 text-cyan-100 hover:border-cyan-300 hover:bg-cyan-400/28",
+    "border border-cyan-400/30 bg-[var(--button-primary-bg)] text-[var(--button-primary-text)] hover:border-cyan-300 hover:bg-[var(--button-primary-bg-hover)]",
   secondary:
-    "border border-white/14 bg-white/[0.04] text-slate-100 hover:border-white/28 hover:bg-white/[0.08]",
+    "border border-[color:var(--border-strong)] bg-[var(--panel-soft)] text-[var(--text-primary)] hover:bg-[var(--panel)]",
   ghost:
-    "border border-transparent bg-transparent text-slate-200 hover:border-white/14 hover:bg-white/[0.05]",
+    "border border-transparent bg-transparent text-[var(--text-secondary)] hover:border-[color:var(--border)] hover:bg-[var(--panel-soft)]",
 };
 
 export function Button({ children, className = "", variant = "primary", ...props }: Props) {

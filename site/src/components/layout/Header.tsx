@@ -5,9 +5,11 @@ import { Button } from "../common/Button";
 
 interface HeaderProps {
   onOpenSearch: () => void;
+  theme: "dark" | "light";
+  onToggleTheme: () => void;
 }
 
-export function Header({ onOpenSearch }: HeaderProps) {
+export function Header({ onOpenSearch, theme, onToggleTheme }: HeaderProps) {
   const [isCompact, setIsCompact] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -27,13 +29,13 @@ export function Header({ onOpenSearch }: HeaderProps) {
   ];
 
   return (
-    <header className={`sticky top-0 z-40 border-b border-white/8 bg-slate-950/82 backdrop-blur-xl transition ${isCompact ? "shadow-2xl" : ""}`}>
+    <header className={`theme-header sticky top-0 z-40 border-b backdrop-blur-xl transition ${isCompact ? "shadow-2xl" : ""}`}>
       <div className={`mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 transition-all md:px-6 ${isCompact ? "py-3" : "py-4"}`}>
         <Link to="/" className="flex items-center gap-3">
           <img src={`${import.meta.env.BASE_URL}logo-icon.svg`} alt="" className="h-11 w-11" />
           <div>
             <div className="font-display text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Pattern Hex</div>
-            <div className="text-xs text-slate-400">Practical Java Design Patterns</div>
+            <div className="theme-text-muted text-xs">Practical Java Design Patterns</div>
           </div>
         </Link>
 
@@ -43,7 +45,7 @@ export function Header({ onOpenSearch }: HeaderProps) {
               key={item.label}
               to={item.to}
               className={({ isActive }) =>
-                isActive ? "text-sm font-semibold text-slate-50" : "text-sm font-medium text-slate-400 hover:text-slate-50"
+                isActive ? "theme-text-primary text-sm font-semibold" : "theme-text-muted text-sm font-medium hover:text-[var(--text-primary)]"
               }
             >
               {item.label}
@@ -52,13 +54,21 @@ export function Header({ onOpenSearch }: HeaderProps) {
           <button
             type="button"
             onClick={onOpenSearch}
-            className="rounded-full border border-white/12 bg-white/[0.04] px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-white/24 hover:bg-white/[0.08]"
+            className="theme-panel-soft theme-text-secondary rounded-full border px-4 py-2 text-sm font-medium transition hover:bg-[var(--panel)]"
             aria-label="Open search palette"
           >
             Search
-            <span className="ml-2 rounded-md border border-white/10 px-2 py-0.5 font-mono text-xs text-slate-400">Ctrl K</span>
+            <span className="ml-2 rounded-md border border-[color:var(--border)] px-2 py-0.5 font-mono text-xs theme-text-muted">Ctrl K</span>
           </button>
-          <a href={repositoryUrl} target="_blank" rel="noreferrer" className="text-sm font-medium text-slate-400 hover:text-slate-50">
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            className="theme-panel-soft theme-text-secondary rounded-full border px-4 py-2 text-sm font-medium transition hover:bg-[var(--panel)]"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            {theme === "dark" ? "Light mode" : "Dark mode"}
+          </button>
+          <a href={repositoryUrl} target="_blank" rel="noreferrer" className="theme-text-muted text-sm font-medium hover:text-[var(--text-primary)]">
             GitHub
           </a>
           <Button href={repositoryUrl} target="_blank" rel="noreferrer">
@@ -69,7 +79,7 @@ export function Header({ onOpenSearch }: HeaderProps) {
         <button
           type="button"
           onClick={() => setIsMobileOpen((value) => !value)}
-          className="rounded-full border border-white/12 p-3 text-slate-100 md:hidden"
+          className="theme-panel-soft theme-text-primary rounded-full border p-3 md:hidden"
           aria-label="Toggle navigation menu"
         >
           {isMobileOpen ? "Close" : "Menu"}
@@ -77,14 +87,14 @@ export function Header({ onOpenSearch }: HeaderProps) {
       </div>
 
       {isMobileOpen ? (
-        <div className="border-t border-white/8 bg-slate-950 px-4 py-4 md:hidden">
+        <div className="theme-header border-t px-4 py-4 md:hidden">
           <nav className="grid gap-3">
             {links.map((item) => (
               <NavLink
                 key={item.label}
                 to={item.to}
                 onClick={() => setIsMobileOpen(false)}
-                className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3 text-sm font-medium text-slate-200"
+                className="theme-panel-soft theme-text-primary rounded-2xl border px-4 py-3 text-sm font-medium"
               >
                 {item.label}
               </NavLink>
@@ -95,9 +105,16 @@ export function Header({ onOpenSearch }: HeaderProps) {
                 setIsMobileOpen(false);
                 onOpenSearch();
               }}
-              className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3 text-left text-sm font-medium text-slate-200"
+              className="theme-panel-soft theme-text-primary rounded-2xl border px-4 py-3 text-left text-sm font-medium"
             >
               Search
+            </button>
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="theme-panel-soft theme-text-primary rounded-2xl border px-4 py-3 text-left text-sm font-medium"
+            >
+              {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             </button>
             <Button href={repositoryUrl} target="_blank" rel="noreferrer">
               Star on GitHub
